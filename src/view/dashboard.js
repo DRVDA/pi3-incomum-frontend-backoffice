@@ -1,15 +1,18 @@
+import axios from 'axios';
+import React, { useEffect, useState } from "react";
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 
-
-import axios from 'axios';
-import React, { useEffect, useState } from "react";
+import Navbar from "../component/Navbar";
 
 export default function Dashboard() {
 
 
     return (
         <div>
+      <Navbar/>
+      <br/><br/><br/>
       <div class="container-fluid">
         {/* Calculations*/}
         <div class="row">

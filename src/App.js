@@ -5,6 +5,8 @@ import { BrowserRouter as Router, Route, Link, Routes } from "react-router-dom";
 import Login from './view/login';
 import Dashboard from './view/dashboard';
 import ClientesList from './view/clientesList';
+import FuncionariosList from './view/funcionariosList';
+import EditoresList from './view/editoresList';
 
 import Form from './view/form';
 import List from './view/list';
@@ -20,6 +22,8 @@ function App() {
               <Route path="/" element={<Login />} />
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/clientesList" element={<ClientesList />} />
+              <Route path="/funcionariosList" element={<FuncionariosList />} />
+              <Route path="/editoresList" element={<EditoresList />} />
 
               <Route path="/form" element={<Form />} />
               <Route path="/edit/:filmeid" element={<Edit />} />

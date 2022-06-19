@@ -21,7 +21,7 @@ export default function Dashboard() {
         {/*Grids*/}
         <div className="d-flex">
           <div className="me-auto bd-highlight">
-            <h5 className="ms-auto underline-light-pink">Lista de clientes</h5>
+            <h5 className="ms-auto underline-light-pink">Lista de editores</h5>
           </div>
           <button className="col-1 float-right btn-primary">Adicionar</button>
         </div>
