@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 {/* MDB */}
 import "../css/mdb.min.css";
+import "../js/mdb.min.js";
 
 function Navbar() {
   return (
@@ -127,6 +128,7 @@ function Navbar() {
       {/* Navbar */}
     </div>
   );
+
 }
 
 export default Navbar

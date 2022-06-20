@@ -1,6 +1,11 @@
 /* ==> NÃO TROCAR AS ORDENS DOS CODIGOS CSS POR CAUSA DE UM CODIGO IR SOBREPOR A OUTRO <== */
 
 /*Teve de ser por causa de mudar a cor de fundo ao button que nao estava a dar com o bootstrap*/
+*{
+    padding: 0;
+    margin: 0;
+}
+
 .button-caseiro{
 	border-radius:10%;
     text-decoration:none;
