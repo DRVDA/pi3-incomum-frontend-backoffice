@@ -1,21 +1,42 @@
+import axios from 'axios';
+import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+//sweetalert2 - importação
+import Swal from 'sweetalert2/dist/sweetalert2.js'
+import 'sweetalert2/src/sweetalert2.scss'
+
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 
-import axios from "axios";
-import React, { useEffect, useState } from "react";
-
 import Navbar from "../component/Navbar";
 
-
-
 export default function Dashboard() {
+  const [clienteList, setdataCliente] = useState([]);
+
+  useEffect(() => {
+    const url = "https://backend-incomum.herokuapp.com/cliente/list";
+    axios
+      .get(url)
+      .then((res) => {
+        if (res.data.success) {
+          const data = res.data.data;
+          setdataCliente(data);
+        } else {
+          alert("Error Web Service!");
+        }
+      })
+      .catch((error) => {
+        alert(error);
+      });
+  }, []);
+
   return (
     <div>
-    <Navbar/>
+      <Navbar />
 
-<br/><br/>
-<br/>
-
+      <br />
+      <br />
+      <br />
 
       <div className="container-fluid">
         {/*Grids*/}
@@ -29,32 +50,18 @@ export default function Dashboard() {
           <table className="table table-striped">
             <thead>
               <tr>
-                <th scope="col">#</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Handle</th>
+                <th scope="col">idcliente</th>
+                <th scope="col">idhistorico</th>
+                <th scope="col">nome</th>
+                <th scope="col">email</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td colspan="2">Larry the Bird</td>
-                <td>@twitter</td>
-              </tr>
+              <LoadFillData />
             </tbody>
           </table>
+
+
           {/* Numeração aba de lista */}
           <div className="d-flex justify-content-center">
             <button
@@ -92,4 +99,87 @@ export default function Dashboard() {
       </div>
     </div>
   );
+
+  function LoadFillData() {
+    return clienteList.map((data, index) => {
+      return (
+        <tr key={index}>
+          <th>{data.idcliente}</th>
+          <td>{data.idhistorico}</td>
+          <td>{data.nome}</td>
+          <td>{data.email}</td>
+          <td>
+            <Link className="btn btn-outline-info" to={"/edit/" + data.idcliente}>
+              Edit
+            </Link>
+          </td>
+          <td>
+            <button
+              class="btn btn-outline-danger"
+              onClick={() => OnDelete(data.idcliente)}
+            >
+              {" "}
+              Delete{" "}
+            </button>
+          </td>
+        </tr>
+      );
+    });
+  }
+
+  function OnDelete(id) {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You will not be able to recover this imaginary file!",
+      type: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Yes, delete it!",
+      cancelButtonText: "No, keep it",
+    }).then((result) => {
+      if (result.value) {
+        SendDelete(id);
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        Swal.fire("Cancelled", "Your imaginary file is safe :)", "error");
+      }
+    });
+  }
+
+  function SendDelete(idcliente) {
+    // url do backend
+    const baseUrl = "https://backend-incomum.herokuapp.com/cliente/delete/" + idcliente;
+    // network
+    axios
+      .delete(baseUrl)
+      .then((response) => {
+        console.log(idcliente);
+        if (response.data.success) {
+          Swal.fire("Deleted!", "Your employee has been deleted.", "success");
+          LoadCliente();
+        }
+      })
+      .catch((error) => {
+        alert("Error 325");
+      });
+
+    useEffect(() => {
+      LoadCliente();
+    }, []);
+  }
+
+  function LoadCliente() {
+    const url = "https://backend-incomum.herokuapp.com/cliente/list";
+    axios
+      .get(url)
+      .then((res) => {
+        if (res.data.success) {
+          const data = res.data.data;
+          setdataCliente(data);
+        } else {
+          alert("Error Web Service!");
+        }
+      })
+      .catch((error) => {
+        alert(error);
+      });
+  }
 }
