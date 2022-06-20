@@ -7,6 +7,7 @@ import Dashboard from './view/dashboard';
 import ClientesList from './view/clientesList';
 import FuncionariosList from './view/funcionariosList';
 import EditoresList from './view/editoresList';
+import PacksList from './view/packsList';
 
 import Form from './view/form';
 import List from './view/list';
@@ -24,6 +25,7 @@ function App() {
               <Route path="/clientesList" element={<ClientesList />} />
               <Route path="/funcionariosList" element={<FuncionariosList />} />
               <Route path="/editoresList" element={<EditoresList />} />
+              <Route path="/packsList" element={<PacksList />} />
 
               <Route path="/form" element={<Form />} />
               <Route path="/edit/:filmeid" element={<Edit />} />

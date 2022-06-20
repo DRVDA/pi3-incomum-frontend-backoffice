@@ -48,7 +48,7 @@ function Navbar() {
               className="list-group-item list-group-item-action py-2 ripple"
             >
               <i className="fas fa-chart-bar fa-fw me-3"></i>
-              <Link to="/packs">Packs</Link>
+              <Link to="/packsList">Packs</Link>
             </a>
           </div>
         </div>
