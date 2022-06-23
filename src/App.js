@@ -17,7 +17,6 @@ function App() {
     <Router>
       <div className="App">
         
-        <div className="container py-4">
           <div className="row">
             <Routes>
               <Route path="/" element={<Login />} />
@@ -31,7 +30,6 @@ function App() {
               <Route path="/edit/:filmeid" element={<Edit />} />
             </Routes>
           </div>
-        </div>
       </div>
     </Router>
   );

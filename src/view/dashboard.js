@@ -8,11 +8,30 @@ import Navbar from "../component/Navbar";
 
 export default function Dashboard() {
 
+const [compraList, setdataCompra] = useState([]);
+
+  useEffect(() => {
+    const url = "https://backend-incomum.herokuapp.com/compra/list";
+    axios
+      .get(url)
+      .then((res) => {
+        if (res.data.success) {
+          const data = res.data.data;
+          setdataCompra(data);
+        } else {
+          alert("Error Web Service!");
+        }
+      })
+      .catch((error) => {
+        alert(error);
+      });
+  }, []);
 
     return (
         <div>
       <Navbar/>
       <br/><br/><br/>
+      
       <div class="container-fluid">
         {/* Calculations*/}
         <div class="row">
@@ -85,35 +104,18 @@ export default function Dashboard() {
         <div class="row">
           <div class="col-6">
             <h5 class="text-center underline-light-pink">
-              Fidelidades a expirar
+              Compras
             </h5>
             <table class="table table-striped">
               <thead>
                 <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">First</th>
-                  <th scope="col">Last</th>
-                  <th scope="col">Handle</th>
+                  <th scope="col">idcompra</th>
+                  <th scope="col">idcliente</th>
+                  <th scope="col">datacompra</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <th scope="row">1</th>
-                  <td>Mark</td>
-                  <td>Otto</td>
-                  <td>@mdo</td>
-                </tr>
-                <tr>
-                  <th scope="row">2</th>
-                  <td>Jacob</td>
-                  <td>Thornton</td>
-                  <td>@fat</td>
-                </tr>
-                <tr>
-                  <th scope="row">3</th>
-                  <td colspan="2">Larry the Bird</td>
-                  <td>@twitter</td>
-                </tr>
+                <LoadFillDataCompra />
               </tbody>
             </table>
 
@@ -221,6 +223,87 @@ export default function Dashboard() {
       </div>
     </div>
     );
-
     
+
+    function LoadFillDataCompra() {
+    return compraList.map((data, index) => {
+      return (
+        <tr key={index}>
+          <th>{data.idcompra}</th>
+          <td>{data.idcliente}</td>
+          <td>{data.datacompra}</td>
+          <td>
+            <Link className="btn btn-outline-info" to={"/edit/" + data.idcompra}>
+              Edit
+            </Link>
+          </td>
+          <td>
+            <button
+              class="btn btn-outline-danger"
+              onClick={() => OnDeleteCompra(data.idcompra)}
+            >
+              {" "}
+              Delete{" "}
+            </button>
+          </td>
+        </tr>
+      );
+    });
+  }
+
+  function OnDeleteCompra(id) {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You will not be able to recover this imaginary file!",
+      type: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Yes, delete it!",
+      cancelButtonText: "No, keep it",
+    }).then((result) => {
+      if (result.value) {
+        OnDeleteCompra(id);
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        Swal.fire("Cancelled", "Your imaginary file is safe :)", "error");
+      }
+    });
+  }
+
+  function OnDeleteCompra(idcompra) {
+    // url do backend
+    const baseUrl = "https://backend-incomum.herokuapp.com/compra/delete/" + idcompra;
+    // network
+    axios
+      .delete(baseUrl)
+      .then((response) => {
+        console.log(idcompra);
+        if (response.data.success) {
+          Swal.fire("Deleted!", "Your employee has been deleted.", "success");
+          LoadCompra();
+        }
+      })
+      .catch((error) => {
+        alert("Error 325");
+      });
+
+    useEffect(() => {
+      LoadCompra();
+    }, []);
+  }
+
+  function LoadCompra() {
+    const url = "https://backend-incomum.herokuapp.com/compra/list";
+    axios
+      .get(url)
+      .then((res) => {
+        if (res.data.success) {
+          const data = res.data.data;
+          setdataCompra(data);
+        } else {
+          alert("Error Web Service!");
+        }
+      })
+      .catch((error) => {
+        alert(error);
+      });
+  }
 }
