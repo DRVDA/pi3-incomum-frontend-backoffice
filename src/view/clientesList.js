@@ -44,7 +44,7 @@ export default function Dashboard() {
           <div className="me-auto bd-highlight">
             <h5 className="ms-auto underline-light-pink">Lista de clientes</h5>
           </div>
-          <button className="col-1 float-right btn-primary">Adicionar</button>
+          <Link to="/clienteForm"><button className=" float-right btn-primary">Adicionar</button></Link>
         </div>
         <div className="row col-12">
           <table className="table table-striped">

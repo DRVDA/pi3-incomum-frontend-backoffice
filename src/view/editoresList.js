@@ -1,5 +1,6 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
+import { Link } from "react-router-dom";
 
 import axios from "axios";
 import React, { useEffect, useState } from "react";
@@ -23,7 +24,7 @@ export default function Dashboard() {
           <div className="me-auto bd-highlight">
             <h5 className="ms-auto underline-light-pink">Lista de editores</h5>
           </div>
-          <button className="col-1 float-right btn-primary">Adicionar</button>
+          <Link to="/trabalhadorForm"><button className=" float-right btn-primary">Adicionar</button></Link>
         </div>
         <div className="row col-12">
           <table className="table table-striped">

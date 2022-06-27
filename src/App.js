@@ -5,9 +5,15 @@ import { BrowserRouter as Router, Route, Link, Routes } from "react-router-dom";
 import Login from './view/login';
 import Dashboard from './view/dashboard';
 import ClientesList from './view/clientesList';
+import ClienteForm from './view/clienteForm';
+
 import FuncionariosList from './view/funcionariosList';
+import TrabalhadorForm from './view/trabalhadorForm';
+
 import EditoresList from './view/editoresList';
+
 import PacksList from './view/packsList';
+import PackForm from './view/packForm';
 
 import Form from './view/form';
 import List from './view/list';
@@ -21,10 +27,18 @@ function App() {
             <Routes>
               <Route path="/" element={<Login />} />
               <Route path="/dashboard" element={<Dashboard />} />
+
               <Route path="/clientesList" element={<ClientesList />} />
+              <Route path="/clienteForm" element={<ClienteForm />} />
+
               <Route path="/funcionariosList" element={<FuncionariosList />} />
+              
+              <Route path="/trabalhadorForm" element={<TrabalhadorForm />} />
+
               <Route path="/editoresList" element={<EditoresList />} />
+ 
               <Route path="/packsList" element={<PacksList />} />
+              <Route path="/packForm" element={<PackForm />} />
 
               <Route path="/form" element={<Form />} />
               <Route path="/edit/:filmeid" element={<Edit />} />
