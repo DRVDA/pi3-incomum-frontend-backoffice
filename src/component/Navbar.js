@@ -8,7 +8,7 @@ import "../js/mdb.min.js";
 function Navbar() {
   return (
     <div>
-      <nav
+      {/*<div
         id="sidebarMenu"
         className="collapse d-lg-block sidebar collapse bg-primary"
       >
@@ -34,14 +34,7 @@ function Navbar() {
               className="list-group-item list-group-item-action py-2 ripple"
             >
               <i className="fas fa-lock fa-fw me-3"></i>
-              <Link to="/funcionariosList">Funcionarios</Link>
-            </a>
-            <a
-              href="#"
-              className="list-group-item list-group-item-action py-2 ripple"
-            >
-              <i className="fas fa-chart-line fa-fw me-3"></i>
-              <Link to="/editoresList">Editores</Link>
+              <Link to="/trabalhadoresList">Trabalhadores</Link>
             </a>
             <a
               href="#"
@@ -52,7 +45,7 @@ function Navbar() {
             </a>
           </div>
         </div>
-      </nav>
+      </div>*/}
       {/* Sidebar */}
 
       {/* Navbar */}

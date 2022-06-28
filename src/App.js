@@ -5,12 +5,10 @@ import { BrowserRouter as Router, Route, Link, Routes } from "react-router-dom";
 import Login from './view/login';
 import Dashboard from './view/dashboard';
 import ClientesList from './view/clientesList';
-import ClienteForm from './view/clienteForm';
+import ClienteForm from './view/clientesForm';
 
-import FuncionariosList from './view/funcionariosList';
+import TrabalhadoresList from './view/trabalhadoresList';
 import TrabalhadorForm from './view/trabalhadorForm';
-
-import EditoresList from './view/editoresList';
 
 import PacksList from './view/packsList';
 import PackForm from './view/packForm';
@@ -29,13 +27,12 @@ function App() {
               <Route path="/dashboard" element={<Dashboard />} />
 
               <Route path="/clientesList" element={<ClientesList />} />
-              <Route path="/clienteForm" element={<ClienteForm />} />
+              <Route path="/clientesForm" element={<ClienteForm />} />
 
-              <Route path="/funcionariosList" element={<FuncionariosList />} />
+              <Route path="/trabalhadoresList" element={<TrabalhadoresList />} />
               
               <Route path="/trabalhadorForm" element={<TrabalhadorForm />} />
 
-              <Route path="/editoresList" element={<EditoresList />} />
  
               <Route path="/packsList" element={<PacksList />} />
               <Route path="/packForm" element={<PackForm />} />

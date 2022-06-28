@@ -1,16 +1,16 @@
-import axios from 'axios';
+import axios from "axios";
 import { Link } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 //sweetalert2 - importação
-import Swal from 'sweetalert2/dist/sweetalert2.js'
-import 'sweetalert2/src/sweetalert2.scss'
+import Swal from "sweetalert2/dist/sweetalert2.js";
+import "sweetalert2/src/sweetalert2.scss";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 
 import Navbar from "../component/Navbar";
 
-export default function Dashboard() {
+export default function clientesList() {
   const [clienteList, setdataCliente] = useState([]);
 
   useEffect(() => {
@@ -33,18 +33,58 @@ export default function Dashboard() {
   return (
     <div>
       <Navbar />
+      <br/>
+      <br/>
+      <div className="row col-12">
 
-      <br />
-      <br />
-      <br />
-
-      <div className="container-fluid">
+      <div className="col-2 bg-primary">
+          <div className="position-sticky">
+            <div className="list-group mx-2 mt-5">
+              <a
+                href="#"
+                className="list-group-item list-group-item-action py-2 ripple"
+                aria-current="true"
+              >
+                <i className="fas fa-tachometer-alt fa-fw me-3"></i>
+                <Link to="/dashboard">Dashboard</Link>
+              </a>
+              <a
+                href="#"
+                className="list-group-item list-group-item-action py-2 ripple"
+              >
+                <i className="fas fa-chart-area fa-fw me-3"></i>
+                <Link to="/clientesList">Clientes</Link>
+              </a>
+              <a
+                href="#"
+                className="list-group-item list-group-item-action py-2 ripple"
+              >
+                <i className="fas fa-lock fa-fw me-3"></i>
+                <Link to="/trabalhadoresList">Trabalhadores</Link>
+              </a>
+              <a
+                href="#"
+                className="list-group-item list-group-item-action py-2 ripple"
+              >
+                <i className="fas fa-chart-bar fa-fw me-3"></i>
+                <Link to="/packsList">Packs</Link>
+              </a>
+              <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+            </div>
+          </div>
+        </div>
+        
+        
+        <div className="col-10 container">
+        <div className="container-fluid">
         {/*Grids*/}
-        <div className="d-flex">
+        <div className="d-flex mt-5">
           <div className="me-auto bd-highlight">
             <h5 className="ms-auto underline-light-pink">Lista de clientes</h5>
           </div>
-          <Link to="/clienteForm"><button className=" float-right btn-primary">Adicionar</button></Link>
+          <Link to="/clientesForm">
+            <button className=" float-right btn-primary">Adicionar</button>
+          </Link>
         </div>
         <div className="row col-12">
           <table className="table table-striped">
@@ -60,7 +100,6 @@ export default function Dashboard() {
               <LoadFillData />
             </tbody>
           </table>
-
 
           {/* Numeração aba de lista */}
           <div className="d-flex justify-content-center">
@@ -97,6 +136,8 @@ export default function Dashboard() {
           </div>
         </div>
       </div>
+        </div>
+      </div>
     </div>
   );
 
@@ -109,7 +150,10 @@ export default function Dashboard() {
           <td>{data.nome}</td>
           <td>{data.email}</td>
           <td>
-            <Link className="btn btn-outline-info" to={"/edit/" + data.idcliente}>
+            <Link
+              className="btn btn-outline-info"
+              to={"/edit/" + data.idcliente}
+            >
               Edit
             </Link>
           </td>
@@ -146,7 +190,8 @@ export default function Dashboard() {
 
   function SendDelete(idcliente) {
     // url do backend
-    const baseUrl = "https://backend-incomum.herokuapp.com/cliente/delete/" + idcliente;
+    const baseUrl =
+      "https://backend-incomum.herokuapp.com/cliente/delete/" + idcliente;
     // network
     axios
       .delete(baseUrl)

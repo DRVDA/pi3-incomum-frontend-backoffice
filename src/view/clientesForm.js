@@ -10,7 +10,7 @@ import "bootstrap/dist/js/bootstrap.bundle.min";
 
 import Navbar from "../component/Navbar";
 
-export default function Dashboard() {
+export default function clientesForm() {
 
   return (
     <div>
