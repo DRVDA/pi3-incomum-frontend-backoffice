@@ -123,10 +123,10 @@ export default function clientesList() {
           <td>
             <button
               class="btn btn-outline-danger"
-              onClick={() => OnDelete(data.idcliente)}
+              onClick={() => OnDelete(data.id)}
             >
-              {" "}
-              Delete{" "}
+
+              Delete
             </button>
           </td>
         </tr>
