@@ -106,11 +106,11 @@ const [compraList, setdataCompra] = useState([]);
             {/*Graphics*/}
             <div class="row">
               <div class="mt-5 col-6 text-center">
-                <h5>Fidelidades</h5>
+                <h5>Gráfico trabalhadores</h5>
                 <div id="chartdiv"></div>
               </div>
               <div class="mt-5 col-6 text-center">
-                <h5>Fidelidades</h5>
+                <h5>Gráfico compras/formularios</h5>
                 <div id="chartdiv1"></div>
               </div>
             </div>
@@ -118,7 +118,7 @@ const [compraList, setdataCompra] = useState([]);
             {/*Grids*/}
             <div class="row">
               <div class="col-6">
-                <h5 class="text-center underline-light-pink">Compras</h5>
+                <h5 class="text-center underline-light-pink">Gráfico clientes</h5>
                 <table class="table table-striped">
                   <thead>
                     <tr>
@@ -168,7 +168,7 @@ const [compraList, setdataCompra] = useState([]);
               </div>
 
               <div class="col-6">
-                <h5 class="text-center underline-light-pink">Algo a definir</h5>
+                <h5 class="text-center underline-light-pink">Gráfico packs</h5>
                 <table class="table table-striped">
                   <thead>
                     <tr>
