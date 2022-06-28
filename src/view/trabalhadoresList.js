@@ -10,19 +10,41 @@ import Navbar from "../component/Navbar";
 
 
 export default function Dashboard() {
+  const [trabalhadoresList, setdataTrabalhadores] = useState([]);
+
+  useEffect(() => {
+    const url = "https://backend-incomum.herokuapp.com/trabalhadores/list";
+    axios
+      .get(url)
+      .then((res) => {
+        if (res.data.success) {
+          const data = res.data.data;
+          setdataTrabalhadores(data);
+        } else {
+          alert("Error Web Service!");
+        }
+      })
+      .catch((error) => {
+        alert(error);
+      });
+  }, []);
+  
   return (
     <div>
     <Navbar/>
 
 <br/><br/>
-<br/>
 
+<div className="row col-12">
 
-      <div className="container-fluid">
+      <div className="col-2"></div>
+        
+        
+        <div className="col-10">
         {/*Grids*/}
-        <div className="d-flex">
+        <div className="d-flex  mt-5">
           <div className="me-auto bd-highlight">
-            <h5 className="ms-auto underline-light-pink">Lista de funcionários</h5>
+            <h5 className="ms-auto underline-light-pink">Lista de trabalhadores</h5>
           </div>
           <Link to="/trabalhadorForm"><button className=" float-right btn-primary">Adicionar</button></Link>
         </div>
@@ -30,31 +52,23 @@ export default function Dashboard() {
           <table className="table table-striped">
             <thead>
               <tr>
-                <th scope="col">#</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Handle</th>
+                <th scope="col">idTrabalhador</th>
+                <th scope="col">idTipoTrabalhador</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Email</th>
+                <th scope="col">DastaNascimento</th>
+                <th scope="col">Tlf</th>
+                <th scope="col">Nif</th>
+                <th scope="col">Username</th>
+                <th scope="col">Password</th>
+
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td colspan="2">Larry the Bird</td>
-                <td>@twitter</td>
-              </tr>
+            <LoadFillData />
+
             </tbody>
+
           </table>
           {/* Numeração aba de lista */}
           <div className="d-flex justify-content-center">
@@ -92,5 +106,98 @@ export default function Dashboard() {
         </div>
       </div>
     </div>
+    </div>
   );
+
+  function LoadFillData() {
+    return trabalhadoresList.map((data, index) => {
+      return (
+        <tr key={index}>
+          <th>{data.idtrabalhador}</th>
+          <td>{data.idtipotrabalhador}</td>
+          <td>{data.nome}</td>
+          <td>{data.email}</td>
+          <td>{data.datanasc}</td>
+          <td>{data.tlf}</td>
+          <td>{data.nif}</td>
+          <td>{data.username}</td>
+          <td>{data.password}</td>
+          <td>
+            <Link
+              className="btn btn-outline-info"
+              to={"/edit/" + data.idtrabalhador}
+            >
+              Edit
+            </Link>
+          </td>
+          <td>
+            <button
+              class="btn btn-outline-danger"
+              onClick={() => OnDelete(data.idtrabalhador)}
+            >
+              {" "}
+              Delete{" "}
+            </button>
+          </td>
+        </tr>
+      );
+    });
+  }
+
+  function OnDelete(id) {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You will not be able to recover this imaginary file!",
+      type: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Yes, delete it!",
+      cancelButtonText: "No, keep it",
+    }).then((result) => {
+      if (result.value) {
+        SendDelete(id);
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        Swal.fire("Cancelled", "Your imaginary file is safe :)", "error");
+      }
+    });
+  }
+
+  function SendDelete(idtrabalhador) {
+    // url do backend
+    const baseUrl =
+      "https://backend-incomum.herokuapp.com/trabalhadores/delete/" + idtrabalhador;
+    // network
+    axios
+      .delete(baseUrl)
+      .then((response) => {
+        console.log(idtrabalhador);
+        if (response.data.success) {
+          Swal.fire("Deleted!", "Your employee has been deleted.", "success");
+          LoadTrabalhadores();
+        }
+      })
+      .catch((error) => {
+        alert("Error 325");
+      });
+
+    useEffect(() => {
+      LoadTrabalhadores();
+    }, []);
+  }
+
+  function LoadTrabalhadores() {
+    const url = "https://backend-incomum.herokuapp.com/trabalhadores/list";
+    axios
+      .get(url)
+      .then((res) => {
+        if (res.data.success) {
+          const data = res.data.data;
+          setdataTrabalhadores(data);
+        } else {
+          alert("Error Web Service!");
+        }
+      })
+      .catch((error) => {
+        alert(error);
+      });
+  }
 }

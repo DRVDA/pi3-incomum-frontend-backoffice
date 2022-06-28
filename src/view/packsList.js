@@ -36,11 +36,15 @@ export default function packList() {
 
       <br />
       <br />
-      <br />
+      <div className="row col-12">
 
-      <div className="container-fluid">
+<div className="col-2"></div>
+  
+  
+  <div className="col-10">
+
         {/*Grids*/}
-        <div className="d-flex">
+        <div className="d-flex mt-5">
           <div className="me-auto bd-highlight">
             <h5 className="ms-auto underline-light-pink">Lista de packs</h5>
           </div>
@@ -96,6 +100,7 @@ export default function packList() {
           </div>
         </div>
       </div>
+    </div>
     </div>
   );
 

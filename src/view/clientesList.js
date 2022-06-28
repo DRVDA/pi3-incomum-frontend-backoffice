@@ -40,8 +40,7 @@ export default function clientesList() {
       <div className="col-2"></div>
         
         
-        <div className="col-10 container">
-        <div className="container-fluid">
+        <div className="col-10">
         {/*Grids*/}
         <div className="d-flex mt-5">
           <div className="me-auto bd-highlight">
@@ -101,7 +100,6 @@ export default function clientesList() {
           </div>
         </div>
       </div>
-        </div>
       </div>
     </div>
   );

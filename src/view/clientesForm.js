@@ -24,8 +24,6 @@ export default function clientesForm() {
       <br />    
       <br />    
 
-
-
       <h1 class="FuncTitulos">Novo Cliente</h1>
     <form class="NovoMembroForm container ">
         <div class="mb-3 row col-9">
