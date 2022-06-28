@@ -32,10 +32,15 @@ const [compraList, setdataCompra] = useState([]);
       <Navbar/>
       <br/><br/><br/>
       
-      <div class="container-fluid">
+      <div className="row col-12">
+
+<div className="col-2"></div>
+  
+  
+  <div className="col-10">
         {/* Calculations*/}
         <div class="row">
-          <div class="col row border">
+          <div class="col row border mt-5">
             <div class="col-3">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -221,6 +226,7 @@ const [compraList, setdataCompra] = useState([]);
           </div>
         </div>
       </div>
+    </div>
     </div>
     );
     

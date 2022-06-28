@@ -18,7 +18,12 @@ export default function Login() {
 
         {/* Parte Cima */}
         <div class=" row border bg-light-pink p-5">
-
+        <img
+              src="https://incommun.pt/wp-content/uploads/2022/02/logotipoincommun.png"
+              height="35"
+              alt="incommun logo"
+              loading="lazy"
+            />
         </div>
 
         {/* Parte Baixo */}
