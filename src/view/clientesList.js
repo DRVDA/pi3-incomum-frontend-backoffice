@@ -37,42 +37,7 @@ export default function clientesList() {
       <br/>
       <div className="row col-12">
 
-      <div className="col-2 bg-primary">
-          <div className="position-sticky">
-            <div className="list-group mx-2 mt-5">
-              <a
-                href="#"
-                className="list-group-item list-group-item-action py-2 ripple"
-                aria-current="true"
-              >
-                <i className="fas fa-tachometer-alt fa-fw me-3"></i>
-                <Link to="/dashboard">Dashboard</Link>
-              </a>
-              <a
-                href="#"
-                className="list-group-item list-group-item-action py-2 ripple"
-              >
-                <i className="fas fa-chart-area fa-fw me-3"></i>
-                <Link to="/clientesList">Clientes</Link>
-              </a>
-              <a
-                href="#"
-                className="list-group-item list-group-item-action py-2 ripple"
-              >
-                <i className="fas fa-lock fa-fw me-3"></i>
-                <Link to="/trabalhadoresList">Trabalhadores</Link>
-              </a>
-              <a
-                href="#"
-                className="list-group-item list-group-item-action py-2 ripple"
-              >
-                <i className="fas fa-chart-bar fa-fw me-3"></i>
-                <Link to="/packsList">Packs</Link>
-              </a>
-              <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-            </div>
-          </div>
-        </div>
+      <div className="col-2"></div>
         
         
         <div className="col-10 container">

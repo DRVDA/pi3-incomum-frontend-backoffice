@@ -8,7 +8,7 @@ import "../js/mdb.min.js";
 function Navbar() {
   return (
     <div>
-      {/*<div
+      <div
         id="sidebarMenu"
         className="collapse d-lg-block sidebar collapse bg-primary"
       >
@@ -45,7 +45,7 @@ function Navbar() {
             </a>
           </div>
         </div>
-      </div>*/}
+      </div>
       {/* Sidebar */}
 
       {/* Navbar */}

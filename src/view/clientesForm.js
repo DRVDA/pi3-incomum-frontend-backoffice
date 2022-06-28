@@ -13,6 +13,8 @@ import Navbar from "../component/Navbar";
 export default function clientesForm() {
 
   return (
+
+    
     <div>
       <Navbar />
 
