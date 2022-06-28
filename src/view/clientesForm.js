@@ -29,9 +29,7 @@ export default function clientesForm() {
       <h1 className="FuncTitulos">Novo Cliente</h1>
       <form className="NovoMembroForm container ">
         <div className="mb-3 row col-9">
-          <label  className="col-3 form-label ">
-            IdCliente
-          </label>
+          <label className="col-3 form-label ">IdCliente</label>
           <input
             type="number"
             className="col form-control"
@@ -40,9 +38,7 @@ export default function clientesForm() {
           />
         </div>
         <div className="mb-3 row col-9">
-          <label  className="col-3 form-label">
-            IdHistorico
-          </label>
+          <label className="col-3 form-label">IdHistorico</label>
           <input
             type="number"
             className="col form-control"
@@ -51,9 +47,7 @@ export default function clientesForm() {
           />
         </div>
         <div className="mb-3 row col-9">
-          <label  className="col-3 form-label">
-            Nome
-          </label>
+          <label className="col-3 form-label">Nome</label>
           <input
             type="string"
             className="col form-control"
@@ -62,9 +56,7 @@ export default function clientesForm() {
           />
         </div>
         <div className="mb-3 row col-9">
-          <label  className="col-3 form-label">
-            Email
-          </label>
+          <label className="col-3 form-label">Email</label>
           <input
             type="email"
             className="col form-control "
@@ -92,7 +84,7 @@ export default function clientesForm() {
   );
 
   function SendSave() {
-     if (campIdHistorico === "") {
+    if (campIdHistorico === "") {
       alert("Insira IdHistorico!");
     } else if (campNome === "") {
       alert("Insira Nome!");

@@ -33,73 +33,73 @@ export default function clientesList() {
   return (
     <div>
       <Navbar />
-      <br/>
-      <br/>
+      <br />
+      <br />
       <div className="row col-12">
+        <div className="col-2"></div>
 
-      <div className="col-2"></div>
-        
-        
         <div className="col-10">
-        {/*Grids*/}
-        <div className="d-flex mt-5">
-          <div className="me-auto bd-highlight">
-            <h5 className="ms-auto underline-light-pink">Lista de clientes</h5>
+          {/*Grids*/}
+          <div className="d-flex mt-5">
+            <div className="me-auto bd-highlight">
+              <h5 className="ms-auto underline-light-pink">
+                Lista de clientes
+              </h5>
+            </div>
+            <Link to="/clientesForm">
+              <button className=" float-right btn-primary">Adicionar</button>
+            </Link>
           </div>
-          <Link to="/clientesForm">
-            <button className=" float-right btn-primary">Adicionar</button>
-          </Link>
-        </div>
-        <div className="row col-12">
-          <table className="table table-striped">
-            <thead>
-              <tr>
-                <th scope="col">idcliente</th>
-                <th scope="col">idhistorico</th>
-                <th scope="col">nome</th>
-                <th scope="col">email</th>
-              </tr>
-            </thead>
-            <tbody>
-              <LoadFillData />
-            </tbody>
-          </table>
+          <div className="row col-12">
+            <table className="table table-striped">
+              <thead>
+                <tr>
+                  <th scope="col">idcliente</th>
+                  <th scope="col">idhistorico</th>
+                  <th scope="col">nome</th>
+                  <th scope="col">email</th>
+                </tr>
+              </thead>
+              <tbody>
+                <LoadFillData />
+              </tbody>
+            </table>
 
-          {/* Numeração aba de lista */}
-          <div className="d-flex justify-content-center">
-            <button
-              type="button"
-              className="button-caseiro text-dark-pink border-dark-pink m-2 fs-6"
-            >
-              <b>1</b>
-            </button>
-            <button
-              type="button"
-              className="button-caseiro text-dark-pink border-dark-pink m-2 fs-6"
-            >
-              <b>2</b>
-            </button>
-            <button
-              type="button"
-              className="button-caseiro text-dark-pink border-dark-pink m-2 fs-6"
-            >
-              <b>3</b>
-            </button>
-            <button
-              type="button"
-              className="button-caseiro text-dark-pink border-dark-pink m-2 fs-6"
-            >
-              <b>4</b>
-            </button>
-            <button
-              type="button"
-              className="button-caseiro text-dark-pink border-dark-pink m-2 fs-6"
-            >
-              <b>5</b>
-            </button>
+            {/* Numeração aba de lista */}
+            <div className="d-flex justify-content-center">
+              <button
+                type="button"
+                className="button-caseiro text-dark-pink border-dark-pink m-2 fs-6"
+              >
+                <b>1</b>
+              </button>
+              <button
+                type="button"
+                className="button-caseiro text-dark-pink border-dark-pink m-2 fs-6"
+              >
+                <b>2</b>
+              </button>
+              <button
+                type="button"
+                className="button-caseiro text-dark-pink border-dark-pink m-2 fs-6"
+              >
+                <b>3</b>
+              </button>
+              <button
+                type="button"
+                className="button-caseiro text-dark-pink border-dark-pink m-2 fs-6"
+              >
+                <b>4</b>
+              </button>
+              <button
+                type="button"
+                className="button-caseiro text-dark-pink border-dark-pink m-2 fs-6"
+              >
+                <b>5</b>
+              </button>
+            </div>
           </div>
         </div>
-      </div>
       </div>
     </div>
   );
@@ -125,7 +125,6 @@ export default function clientesList() {
               class="btn btn-outline-danger"
               onClick={() => OnDelete(data.id)}
             >
-
               Delete
             </button>
           </td>
