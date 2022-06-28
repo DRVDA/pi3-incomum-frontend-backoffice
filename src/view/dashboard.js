@@ -99,8 +99,6 @@ const [compraList, setdataCompra] = useState([]);
                 </div>
               </div>
 
-
-
             </div>
 
             {/*Graphics*/}
