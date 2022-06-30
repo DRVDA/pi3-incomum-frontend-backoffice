@@ -11,6 +11,9 @@ import "bootstrap/dist/js/bootstrap.bundle.min";
 import Navbar from "../component/Navbar";
 
 export default function packForm() {
+  const [campIdPack, setcampIdPack] = useState("");
+  const [campNome, setcampNome] = useState("");
+  const [campPreco, setcampPreco] = useState("");
 
 
   return (
@@ -21,34 +24,70 @@ export default function packForm() {
       <br />
       <br />
 
-      <p class="FuncTitulos">Novo pack</p>
-    <form class="NovoMembroForm container ">
-        <div class="mb-3 row col-12">
-            <label for="MembroNome" class="col-3 form-label FuncSubTitulos ">Nome</label>
-            <input type="text" class="col form-control" id="MembroNome" aria-describedby="emailHelp"/>
+      <p className="FuncTitulos">Novo pack</p>
+    <form className="container ">
+        <div className="mb-3 row col-12">
+            <label className="col-3 form-label ">idPack</label>
+            <input type="number" className="col form-control" value={campIdPack}
+            onChange={(value) => setcampIdPack(value.target.value)}/>
           </div>
-          <div class="mb-3 row col-12">
-            <label for="MembroNome" class="col-3 form-label FuncSubTitulos ">Título</label>
-            <input type="text" class="col form-control" id="MembroNome" aria-describedby="emailHelp"/>
+          <div className="mb-3 row col-12">
+            <label className="col-3 form-label ">Nome</label>
+            <input type="text" className="col form-control" value={campNome}
+            onChange={(value) => setcampNome(value.target.value)}/>
           </div>
-        <div class="mb-3 row col-12">
-          <label for="MembroNome" class="col-3 form-label FuncSubTitulos ">Descrição</label>
-          <input type="text" class="col form-control DescriItem" id="MembroNome" aria-describedby="emailHelp"/>
+        <div className="mb-3 row col-12">
+          <label className="col-3 form-label ">Preco</label>
+          <input type="number" className="col form-control" value={campPreco}
+            onChange={(value) => setcampPreco(value.target.value)}/>
         </div>
-        <div class="mb-3 row col-12">
-            <label for="MembroFotografia" class="col-3 form-label FuncSubTitulos">Fotografia</label>
-            <input type="file" class="col form-control custom-file-input FileInputGabe" id="MembroFotografia"/>
-
+          <div > 
+            <button type="button" className="btn btn-primary">Cancelar</button>
+            <button type="clear" className="btn btn-primary">Limpar</button>
+            <button
+            type="submit"
+            className="btn btn-primary"
+            onClick={() => SendSave()}
+            >
+              Criar
+            </button>          
           </div>
-          <div class="FormButtons"> 
-            <button type="button" class="btn btn-primary Btn_Cancelar">Cancelar</button>
-            <button type="clear" class="btn btn-primary Btn_Limpar">Limpar</button>
-            <button type="submit" class="btn btn-primary Btn_Criar">Criar</button>
-          </div>
-      
       </form>
     </div>
   );
 
+  function SendSave() {
+    preventDefault();
+
+    if (campNome === "") {
+      alert("Insira Nome!");
+    } else if (campPreco === "") {
+      alert("Insira preco!");
+    } else {
+      const baseUrl = "https://backend-incomum.herokuapp.com/packs/create";
+      const datapost = {
+        idcliente: campIdPack,
+        nome: campNome,
+        preco: campPreco,
+      };
+
+       axios
+        .post(baseUrl, datapost)
+        .then((response) => {
+          if (response.data.success === true) {
+            alert(response.data.message);
+            window.location.reload();
+
+          } else {
+            alert(response.data.message);
+            window.location.reload();
+
+          }
+        })
+        .catch((error) => {
+          alert("Error 34 " + error);
+        });
+    }
+  }
   
 }

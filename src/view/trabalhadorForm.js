@@ -138,7 +138,8 @@ export default function trabalhadorForm() {
     </div>
   );
 
-  function SendSave() {
+   function SendSave() {
+    event.preventDefault();
     if (campIdTipoTrabalhador === "") {
       alert("Insira IdTipoTrabalhador!");
     } else if (campNome === "") {
@@ -169,13 +170,17 @@ export default function trabalhadorForm() {
         password: campPassword
       };
 console.log(campIdTrabalhador,campIdTipoTrabalhador,campNome,campEmail,campDataNasc,campTlf,campNif,campUsername,campPassword );
-      axios
+      
+        axios
         .post(baseUrl, datapost)
         .then((response) => {
           if (response.data.success === true) {
             alert(response.data.message);
+            window.location.reload();
+
           } else {
             alert(response.data.message);
+            window.location.reload();
           }
         })
         .catch((error) => {

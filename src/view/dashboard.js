@@ -59,7 +59,7 @@ export default function Dashboard() {
 
               </div>
               <div class="col-9">
-                <h1 class="mt-3 text-center">888</h1>
+                <h1 class="mt-3 text-center"><loadCountTrabalhadores/></h1>
               </div>
             </div>
 
@@ -236,6 +236,10 @@ export default function Dashboard() {
     </div>
   );
 
+  async function componentDidMount() {
+    await this.loadCountTrabalhadores();
+     console.log( "total" , this.state.TotalTrabalhadores) ;
+ } 
 
   function LoadFillDataCompra() {
     return compraList.map((data, index) => {
@@ -310,6 +314,23 @@ export default function Dashboard() {
         if (res.data.success) {
           const data = res.data.data;
           setdataCompra(data);
+        } else {
+          alert("Error Web Service!");
+        }
+      })
+      .catch((error) => {
+        alert(error);
+      });
+  }
+
+  async function loadCountTrabalhadores() {
+    const url = "https://backend-incomum.herokuapp.com/dashboard/contartrabalhadores";
+    await axios
+      .get(url)
+      .then((res) => {
+        if (res.data.success) {
+          const data = res.data.data;
+          this.setState({ TotalTrabalhadores: data });
         } else {
           alert("Error Web Service!");
         }

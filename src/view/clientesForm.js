@@ -83,7 +83,8 @@ export default function clientesForm() {
     </div>
   );
 
-  function SendSave() {
+   function SendSave() {
+    preventDefault();
     if (campIdHistorico === "") {
       alert("Insira IdHistorico!");
     } else if (campNome === "") {
@@ -100,13 +101,17 @@ export default function clientesForm() {
       };
       console.log(campIdHistorico);
 
-      axios
+       axios
         .post(baseUrl, datapost)
         .then((response) => {
           if (response.data.success === true) {
             alert(response.data.message);
+            window.location.reload();
+
           } else {
             alert(response.data.message);
+            window.location.reload();
+
           }
         })
         .catch((error) => {
