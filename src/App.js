@@ -4,8 +4,10 @@ import 'bootstrap/dist/js/bootstrap.bundle.min';
 import { BrowserRouter as Router, Route, Link, Routes } from "react-router-dom";
 import Login from './view/login';
 import Dashboard from './view/dashboard';
+
 import ClientesList from './view/clientesList';
 import ClienteForm from './view/clientesForm';
+import ClienteEdit from './view/clientesEdit';
 
 import TrabalhadoresList from './view/trabalhadoresList';
 import TrabalhadorForm from './view/trabalhadorForm';
@@ -28,6 +30,7 @@ function App() {
 
               <Route path="/clientesList" element={<ClientesList />} />
               <Route path="/clientesForm" element={<ClienteForm />} />
+              <Route path="/clientesEdit" element={<ClienteEdit />} />
 
               <Route path="/trabalhadoresList" element={<TrabalhadoresList />} />
               

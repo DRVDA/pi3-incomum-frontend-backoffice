@@ -115,7 +115,7 @@ export default function clientesList() {
           <td>
             <Link
               className="btn btn-outline-info"
-              to={"/edit/" + data.idcliente}
+              to={"/clientesEdit/" + data.idcliente}
             >
               Edit
             </Link>

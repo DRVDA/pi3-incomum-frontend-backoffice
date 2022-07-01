@@ -113,9 +113,9 @@ function Navbar() {
                 aria-labelledby="navbarDropdownMenuLink"
               >
                 <li>
-                  <a className="dropdown-item list-group-item" href="#">
+                  <Link to="" className="dropdown-item list-group-item">
                     Perfil
-                  </a>
+                  </Link>
                 </li>
                 <li>
                   <a className="dropdown-item list-group-item" href="#">
