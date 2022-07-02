@@ -73,15 +73,15 @@ export default function clientesEdit() {
                 <>
                     <div className="form-row justify-content-center">
                         <div className="form-group col-md-6">
-                            <label htmlFor="inputPassword4">Nome</label>
-                            <input type="text" className="form-control" placeholder="Descrição"
+                            <label htmlFor="inputNome">Nome</label>
+                            <input type="text" className="form-control" placeholder="Nome"
                                 value={campNome} onChange={(value) =>
                                     setCampNome(value.target.value)} />
                         </div>
                         <div className="form-group col-md-6">
-                            <label htmlFor="inputEmail4">Email</label>
+                            <label htmlFor="inputEmail">Email</label>
                             <input type="text" className="form-control"
-                                placeholder="Titulo"
+                                placeholder="Email"
                                 value={campEmail} onChange={(value) =>
                                     setcampEmail(value.target.value)} />
                         </div>
@@ -103,7 +103,7 @@ export default function clientesEdit() {
             email: campEmail
         }
 
-        console.log(selectGenero)
+        console.log(campNome, campEmail)
 
         axios.post(url, datapost)
             .then(response => {
