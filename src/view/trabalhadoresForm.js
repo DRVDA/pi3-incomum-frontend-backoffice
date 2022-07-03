@@ -6,7 +6,7 @@ import React, { useEffect, useState } from "react";
 
 import Navbar from "../component/Navbar";
 
-export default function trabalhadorForm() {
+export default function trabalhadoresForm() {
   const [campIdTrabalhador, setcampIdTrabalhador] = useState("");
   const [campIdTipoTrabalhador, setcampIdTipoTrabalhador] = useState("");
   const [campNome, setcampNome] = useState("");

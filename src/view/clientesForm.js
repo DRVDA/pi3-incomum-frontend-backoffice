@@ -83,8 +83,8 @@ export default function clientesForm() {
     </div>
   );
 
-   function SendSave() {
-    preventDefault();
+    function SendSave() {
+    event.preventDefault();
     if (campIdHistorico === "") {
       alert("Insira IdHistorico!");
     } else if (campNome === "") {
@@ -99,7 +99,7 @@ export default function clientesForm() {
         nome: campNome,
         email: campEmail,
       };
-      console.log(campIdHistorico);
+      console.log(datapost);
 
        axios
         .post(baseUrl, datapost)

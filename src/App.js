@@ -10,7 +10,8 @@ import ClienteForm from './view/clientesForm';
 import ClienteEdit from './view/clientesEdit';
 
 import TrabalhadoresList from './view/trabalhadoresList';
-import TrabalhadorForm from './view/trabalhadorForm';
+import TrabalhadoresForm from './view/trabalhadoresForm';
+import TrabalhadoresEdit from './view/trabalhadoresEdit';
 
 import PacksList from './view/packsList';
 import PackForm from './view/packForm';
@@ -30,11 +31,11 @@ function App() {
 
               <Route path="/clientesList" element={<ClientesList />} />
               <Route path="/clientesForm" element={<ClienteForm />} />
-              <Route path="/clientesEdit" element={<ClienteEdit />} />
+              <Route path="/clientesEdit/:idCliente" element={<ClienteEdit />} />
 
               <Route path="/trabalhadoresList" element={<TrabalhadoresList />} />
-              
-              <Route path="/trabalhadorForm" element={<TrabalhadorForm />} />
+              <Route path="/trabalhadoresForm" element={<TrabalhadoresForm />} />
+              <Route path="/trabalhadoresEdit" element={<TrabalhadoresEdit />} />
 
  
               <Route path="/packsList" element={<PacksList />} />

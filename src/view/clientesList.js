@@ -123,7 +123,7 @@ export default function clientesList() {
           <td>
             <button
               class="btn btn-outline-danger"
-              onClick={() => OnDelete(data.id)}
+              onClick={() => notificationOnDelete(data.idcliente)}
             >
               Delete
             </button>
@@ -133,7 +133,7 @@ export default function clientesList() {
     });
   }
 
-  function OnDelete(id) {
+  function notificationOnDelete(id) {
     Swal.fire({
       title: "Are you sure?",
       text: "You will not be able to recover this imaginary file!",

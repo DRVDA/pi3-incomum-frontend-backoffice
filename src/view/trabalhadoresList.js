@@ -46,7 +46,7 @@ export default function Dashboard() {
           <div className="me-auto bd-highlight">
             <h5 className="ms-auto underline-light-pink">Lista de trabalhadores</h5>
           </div>
-          <Link to="/trabalhadorForm"><button className=" float-right btn-primary">Adicionar</button></Link>
+          <Link to="/trabalhadoresForm"><button className=" float-right btn-primary">Adicionar</button></Link>
         </div>
         <div className="row col-12">
           <table className="table table-striped">
@@ -125,7 +125,7 @@ export default function Dashboard() {
           <td>
             <Link
               className="btn btn-outline-info"
-              to={"/edit/" + data.idtrabalhador}
+              to={"/trabalhadoresEdit/" + data.idtrabalhador}
             >
               Edit
             </Link>
@@ -133,10 +133,9 @@ export default function Dashboard() {
           <td>
             <button
               class="btn btn-outline-danger"
-              onClick={() => OnDelete(data.idtrabalhador)}
+              onClick={() => notificationOnDelete(data.idtrabalhador)}
             >
-              {" "}
-              Delete{" "}
+              Delete
             </button>
           </td>
         </tr>
@@ -144,7 +143,7 @@ export default function Dashboard() {
     });
   }
 
-  function OnDelete(id) {
+  function notificationOnDelete(id) {
     Swal.fire({
       title: "Are you sure?",
       text: "You will not be able to recover this imaginary file!",
