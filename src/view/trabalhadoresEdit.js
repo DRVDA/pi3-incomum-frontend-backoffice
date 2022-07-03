@@ -1,12 +1,13 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
-
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-
-import Navbar from "../component/Navbar";
+import { useParams } from "react-router-dom";
 
 const baseUrl = "https://backend-incomum.herokuapp.com";
+
+import Navbar from "../component/Navbar";
+import { data } from "jquery";
 
 export default function trabalhadoresEdit() {
   const [campIdTipoTrabalhador, setcampIdTipoTrabalhador] = useState("");
@@ -28,6 +29,7 @@ export default function trabalhadoresEdit() {
     axios
       .get(url)
       .then((res) => {
+
         if (res.data.success) {
           const data = res.data.data;
           setcampIdTipoTrabalhador(data.campIdTipoTrabalhador);
@@ -124,7 +126,7 @@ export default function trabalhadoresEdit() {
                       type="number"
                       className="form-control"
                       placeholder="Nif"
-                      value={campnif}
+                      value={campNif}
                       onChange={(value) => setcampnif(value.target.value)}
                     />
                   </div>
@@ -134,7 +136,7 @@ export default function trabalhadoresEdit() {
                       type="text"
                       className="form-control"
                       placeholder="Nif"
-                      value={campusername}
+                      value={campUsername}
                       onChange={(value) =>
                         setcampUsernameme(value.target.value)
                       }

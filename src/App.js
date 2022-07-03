@@ -35,7 +35,7 @@ function App() {
 
               <Route path="/trabalhadoresList" element={<TrabalhadoresList />} />
               <Route path="/trabalhadoresForm" element={<TrabalhadoresForm />} />
-              <Route path="/trabalhadoresEdit" element={<TrabalhadoresEdit />} />
+              <Route path="/trabalhadoresEdit/:idCliente" element={<TrabalhadoresEdit />} />
 
  
               <Route path="/packsList" element={<PacksList />} />

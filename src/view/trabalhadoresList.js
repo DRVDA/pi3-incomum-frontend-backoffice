@@ -1,13 +1,14 @@
+import axios from "axios";
+import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+//sweetalert2 - importação
+import Swal from "sweetalert2/dist/sweetalert2.js";
+import "sweetalert2/src/sweetalert2.scss";
+
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
-import { Link } from "react-router-dom";
-
-import axios from "axios";
-import React, { useEffect, useState } from "react";
 
 import Navbar from "../component/Navbar";
-
-
 
 export default function Dashboard() {
   const [trabalhadoresList, setdataTrabalhadores] = useState([]);
