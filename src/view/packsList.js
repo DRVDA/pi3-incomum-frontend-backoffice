@@ -48,7 +48,7 @@ export default function packList() {
           <div className="me-auto bd-highlight">
             <h5 className="ms-auto underline-light-pink">Lista de packs</h5>
           </div>
-          <Link to="/packForm"><button className=" float-right btn-primary">Adicionar</button></Link>
+          <Link to="/packsForm"><button className=" float-right btn-primary">Adicionar</button></Link>
         </div>
         <div className="row col-12">
           <table className="table table-striped">
@@ -112,14 +112,14 @@ export default function packList() {
           <td>{data.nome}</td>
           <td>{data.preco}</td>
           <td>
-            <Link className="btn btn-outline-info" to={"/edit/" + data.idpack}>
+            <Link className="btn btn-outline-info" to={"/packsEdit/" + data.idpack}>
               Edit
             </Link>
           </td>
           <td>
             <button
               class="btn btn-outline-danger"
-              onClick={() => OnDelete(data.idpack)}
+              onClick={() => notificationOnDelete(data.idpack)}
             >
               {" "}
               Delete{" "}
@@ -130,7 +130,7 @@ export default function packList() {
     });
   }
 
-  function OnDelete(id) {
+  function notificationOnDelete(id) {
     Swal.fire({
       title: "Are you sure?",
       text: "You will not be able to recover this imaginary file!",
@@ -149,12 +149,15 @@ export default function packList() {
 
   function SendDelete(idpack) {
     // url do backend
+    console.log("vou apagar" , idpack);
+
     const baseUrl = "https://backend-incomum.herokuapp.com/packs/delete/" + idpack;
     // network
     axios
       .delete(baseUrl)
       .then((response) => {
-        console.log(idpack);
+        console.log(response.status);
+
         if (response.data.success) {
           Swal.fire("Deleted!", "Your employee has been deleted.", "success");
           LoadPack();
@@ -170,7 +173,7 @@ export default function packList() {
   }
 
   function LoadPack() {
-    const url = "https://backend-incomum.herokuapp.com/packs/list/";
+    const url = "https://backend-incomum.herokuapp.com/packs/list";
     axios
       .get(url)
       .then((res) => {

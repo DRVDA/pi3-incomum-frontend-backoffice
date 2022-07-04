@@ -10,7 +10,7 @@ import "bootstrap/dist/js/bootstrap.bundle.min";
 
 import Navbar from "../component/Navbar";
 
-export default function packForm() {
+export default function packsForm() {
   const [campIdPack, setcampIdPack] = useState("");
   const [campNome, setcampNome] = useState("");
   const [campPreco, setcampPreco] = useState("");
@@ -57,8 +57,7 @@ export default function packForm() {
   );
 
   function SendSave() {
-    preventDefault();
-
+    event.preventDefault();
     if (campNome === "") {
       alert("Insira Nome!");
     } else if (campPreco === "") {

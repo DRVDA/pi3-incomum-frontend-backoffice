@@ -14,7 +14,8 @@ import TrabalhadoresForm from './view/trabalhadoresForm';
 import TrabalhadoresEdit from './view/trabalhadoresEdit';
 
 import PacksList from './view/packsList';
-import PackForm from './view/packForm';
+import PacksForm from './view/packsForm';
+import PacksEdit from './view/packsEdit';
 
 import Form from './view/form';
 import List from './view/list';
@@ -35,11 +36,12 @@ function App() {
 
               <Route path="/trabalhadoresList" element={<TrabalhadoresList />} />
               <Route path="/trabalhadoresForm" element={<TrabalhadoresForm />} />
-              <Route path="/trabalhadoresEdit/:idCliente" element={<TrabalhadoresEdit />} />
+              <Route path="/trabalhadoresEdit/:idTrabalhador" element={<TrabalhadoresEdit />} />
 
  
               <Route path="/packsList" element={<PacksList />} />
-              <Route path="/packForm" element={<PackForm />} />
+              <Route path="/packsForm" element={<PacksForm />} />
+              <Route path="/packsEdit/:idPack" element={<PacksEdit />} />
 
               <Route path="/form" element={<Form />} />
               <Route path="/edit/:filmeid" element={<Edit />} />

@@ -21,15 +21,14 @@ export default function trabalhadoresEdit() {
 
   const [isLoading, setIsLoading] = useState(false);
 
-  const { idtrabalhador } = useParams();
+  const { idTrabalhador } = useParams();
 
   useEffect(() => {
-    const url = baseUrl + "/trabalhadores/get/" + idtrabalhador;
+    const url = baseUrl + "/trabalhadores/get/" + idTrabalhador;
     setIsLoading(true);
     axios
       .get(url)
       .then((res) => {
-
         if (res.data.success) {
           const data = res.data.data;
           setcampIdTipoTrabalhador(data.campIdTipoTrabalhador);
@@ -127,7 +126,7 @@ export default function trabalhadoresEdit() {
                       className="form-control"
                       placeholder="Nif"
                       value={campNif}
-                      onChange={(value) => setcampnif(value.target.value)}
+                      onChange={(value) => setcampNif(value.target.value)}
                     />
                   </div>
                   <div className="form-group col-md-6">
@@ -138,7 +137,7 @@ export default function trabalhadoresEdit() {
                       placeholder="Nif"
                       value={campUsername}
                       onChange={(value) =>
-                        setcampUsernameme(value.target.value)
+                        setcampUsername(value.target.value)
                       }
                     />
                   </div>
@@ -149,7 +148,7 @@ export default function trabalhadoresEdit() {
                       className="form-control"
                       placeholder="Nif"
                       value={campPassword}
-                      onChange={(value) => setcamppassword(value.target.value)}
+                      onChange={(value) => setcampPassword(value.target.value)}
                     />
                   </div>
                 </div>
@@ -171,7 +170,7 @@ export default function trabalhadoresEdit() {
 
   function sendUpdate() {
     // url de backend
-    const url = baseUrl + "/trabalhadores/update/" + idtrabalhador;
+    const url = baseUrl + "/trabalhadores/update/" + idTrabalhador;
     const datapost = {
       idtipotrabalhador: campIdTipoTrabalhador,
       nome: campNome,
