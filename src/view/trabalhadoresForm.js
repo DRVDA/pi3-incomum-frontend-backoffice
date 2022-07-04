@@ -7,7 +7,6 @@ import React, { useEffect, useState } from "react";
 import Navbar from "../component/Navbar";
 
 export default function trabalhadoresForm() {
-  const [campIdTrabalhador, setcampIdTrabalhador] = useState("");
   const [campIdTipoTrabalhador, setcampIdTipoTrabalhador] = useState("");
   const [campNome, setcampNome] = useState("");
   const [campEmail, setcampEmail] = useState("");
@@ -26,18 +25,7 @@ export default function trabalhadoresForm() {
 
       <p class="FuncTitulos">Novo trabalhador</p>
       <form class="NovoMembroForm container ">
-      <div class="mb-3 row col-12">
-          <label  class="col-3 form-label ">
-            idTrabalhador
-          </label>
-          <input
-            type="text"
-            class="col form-control"
-            id="MembroNome"
-            value={campIdTrabalhador}
-            onChange={(value) => setcampIdTrabalhador(value.target.value)}
-          />
-        </div>
+
       <div class="mb-3 row col-12">
           <label  class="col-3 form-label ">
             TipoTrabalhadorId
@@ -159,7 +147,6 @@ export default function trabalhadoresForm() {
     } else {
       const baseUrl = "https://backend-incomum.herokuapp.com/trabalhadores/create";
       const datapost = {
-        idtrabalhador: campIdTrabalhador,
         idtipotrabalhador: campIdTipoTrabalhador,
         nome: campNome,
         email: campEmail,
@@ -169,7 +156,6 @@ export default function trabalhadoresForm() {
         username: campUsername,
         password: campPassword
       };
-console.log(campIdTrabalhador,campIdTipoTrabalhador,campNome,campEmail,campDataNasc,campTlf,campNif,campUsername,campPassword );
       
         axios
         .post(baseUrl, datapost)

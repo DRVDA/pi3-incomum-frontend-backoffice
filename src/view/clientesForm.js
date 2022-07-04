@@ -11,7 +11,6 @@ import "bootstrap/dist/js/bootstrap.bundle.min";
 import Navbar from "../component/Navbar";
 
 export default function clientesForm() {
-  const [campIdCliente, setcampIdCliente] = useState("");
   const [campIdHistorico, setcampIdHistorico] = useState("");
   const [campNome, setcampNome] = useState("");
   const [campEmail, setcampEmail] = useState("");
@@ -28,15 +27,7 @@ export default function clientesForm() {
 
       <h1 className="FuncTitulos">Novo Cliente</h1>
       <form className="NovoMembroForm container ">
-        <div className="mb-3 row col-9">
-          <label className="col-3 form-label ">IdCliente</label>
-          <input
-            type="number"
-            className="col form-control"
-            value={campIdCliente}
-            onChange={(value) => setcampIdCliente(value.target.value)}
-          />
-        </div>
+
         <div className="mb-3 row col-9">
           <label className="col-3 form-label">IdHistorico</label>
           <input
@@ -94,7 +85,6 @@ export default function clientesForm() {
     } else {
       const baseUrl = "https://backend-incomum.herokuapp.com/cliente/create";
       const datapost = {
-        idcliente: campIdCliente,
         idhistorico: campIdHistorico,
         nome: campNome,
         email: campEmail,

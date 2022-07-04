@@ -11,7 +11,6 @@ import "bootstrap/dist/js/bootstrap.bundle.min";
 import Navbar from "../component/Navbar";
 
 export default function packsForm() {
-  const [campIdPack, setcampIdPack] = useState("");
   const [campNome, setcampNome] = useState("");
   const [campPreco, setcampPreco] = useState("");
 
@@ -26,11 +25,7 @@ export default function packsForm() {
 
       <p className="FuncTitulos">Novo pack</p>
     <form className="container ">
-        <div className="mb-3 row col-12">
-            <label className="col-3 form-label ">idPack</label>
-            <input type="number" className="col form-control" value={campIdPack}
-            onChange={(value) => setcampIdPack(value.target.value)}/>
-          </div>
+        
           <div className="mb-3 row col-12">
             <label className="col-3 form-label ">Nome</label>
             <input type="text" className="col form-control" value={campNome}
@@ -65,7 +60,6 @@ export default function packsForm() {
     } else {
       const baseUrl = "https://backend-incomum.herokuapp.com/packs/create";
       const datapost = {
-        idcliente: campIdPack,
         nome: campNome,
         preco: campPreco,
       };
