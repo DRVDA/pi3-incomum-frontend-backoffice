@@ -118,9 +118,9 @@ function Navbar() {
                   </Link>
                 </li>
                 <li>
-                  <a className="dropdown-item list-group-item" href="#">
+                  <Link to="/" className="dropdown-item list-group-item" href="#">
                     Sair
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </li>
