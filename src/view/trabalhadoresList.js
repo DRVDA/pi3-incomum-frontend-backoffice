@@ -1,6 +1,8 @@
 import axios from "axios";
 import { Link } from "react-router-dom";
 import React, { useEffect, useState } from "react";
+import authHeader from "./auth-header";
+
 //sweetalert2 - importação
 import Swal from "sweetalert2/dist/sweetalert2.js";
 import "sweetalert2/src/sweetalert2.scss";
@@ -16,7 +18,7 @@ export default function Dashboard() {
   useEffect(() => {
     const url = "https://backend-incomum.herokuapp.com/trabalhadores/list";
     axios
-      .get(url)
+      .get(url,  {headers: authHeader()})
       .then((res) => {
         if (res.data.success) {
           const data = res.data.data;
