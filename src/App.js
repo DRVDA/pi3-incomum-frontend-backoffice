@@ -2,7 +2,10 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import { BrowserRouter as Router, Route, Link, Routes } from "react-router-dom";
-import Login from './view/login';
+import AuthService from "./view/auth.service";
+
+import Login from "./view/login";
+import Index from './view/index';
 import Dashboard from './view/dashboard';
 
 import ClientesList from './view/clientesList';
@@ -20,6 +23,7 @@ import PacksEdit from './view/packsEdit';
 import Form from './view/form';
 import List from './view/list';
 import Edit from './view/edit';
+
 function App() {
   return (
     <Router>
@@ -27,7 +31,7 @@ function App() {
         
           <div className="row">
             <Routes>
-              <Route path="/" element={<Login />} />
+              <Route path="/" element={<Index />} />
               <Route path="/dashboard" element={<Dashboard />} />
 
               <Route path="/clientesList" element={<ClientesList />} />
@@ -50,5 +54,8 @@ function App() {
       </div>
     </Router>
   );
+  
+
+      
 }
 export default App;

@@ -1,44 +1,85 @@
-
-
-import axios from "axios";
 import React, { useEffect, useState } from "react";
-//sweetalert2 - importação
-import Swal from "sweetalert2/dist/sweetalert2.js";
-import "sweetalert2/src/sweetalert2.scss";
-import { Link } from "react-router-dom";
-
-
-import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/dist/js/bootstrap.bundle.min";
-import "../css/style.css";
-
-export default function Login() {
-  return (
-      <div class="container-fluid">
-
-        {/* Parte Cima */}
-        <div class=" row border bg-light-pink p-5">
-        <img
-              src="https://incommun.pt/wp-content/uploads/2022/02/logotipoincommun.png"
-              alt="incommun logo"
-              loading="lazy"
-            />
-        </div>
-
-        {/* Parte Baixo */}
-        <h4 class="col-12 d-flex justify-content-center mt-5 mb-4">Login</h4>
-        <div class="col-12 d-flex justify-content-center ">
-          <input type="text" class="col-3 m-2" placeholder="Email:" />
-        </div>
-        <div class="col-12 d-flex justify-content-center ">
-          <input type="text" class="col-3 m-2" placeholder="Passe:" />
-        </div>
-
-        <div class="col-12 d-flex justify-content-center mt-4">
-          <button type="button" class="button-caseiro bg-dark-pink text-light">
-            <b>Entrar</b>
-          </button>
-        </div>
+import Form from "react-validation/build/form";
+import Input from "react-validation/build/input";
+import CheckButton from "react-validation/build/button";
+import AuthService from "../view/auth.service";
+import { useNavigate } from "react-router-dom";
+const required = (value) => {
+  if (!value) {
+    return (
+      <div className="alert alert-danger" role="alert">
+        Este campo é de preenchimento obrigatório!
       </div>
-  );  
+    );
+  }
+};
+export default function LoginComponent() {
+  const [username, setusername] = useState("");
+  const [password, setpassword] = useState("");
+  const [loading, setloading] = useState(false);
+  const [message, setmessage] = useState("");
+  const navigate = useNavigate();
+  async function HandleLogin(event) {
+    event.preventDefault();
+    setmessage("");
+    setloading(true);
+    AuthService.login(username, password)
+      .then((res) => {
+        if (res === "" || res === false) {
+          setmessage("Autenticação falhou.");
+          setloading(false);
+        } else {
+          navigate("/");
+        }
+      })
+      .catch((error) => {
+        setmessage("Autenticação falhou.");
+        setloading(false);
+      });
+  }
+  return (
+    <div className="col-md-4">
+      <div className="card card-container">
+        <img
+          src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
+          alt="profile-img"
+          className="profile-img-card"
+        />
+        <Form onSubmit={HandleLogin}>
+          <div className="form-group">
+            <label htmlFor="username">Username</label>
+            <Input
+              type="text"
+              className="form-control"
+              name="username"
+              value={username}
+              onChange={(value) => setusername(value.target.value)}
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="password">Password</label>
+            <Input
+              type="password"
+              className="form-control"
+              name="password"
+              value={password}
+              onChange={(value) => setpassword(value.target.value)}
+            />
+          </div>
+          <div className="form-group">
+            <button className="btn btn-primary btn-block">
+              <span>Login</span>
+            </button>
+          </div>
+          {message && (
+            <div className="form-group">
+              <div className="alert alert-danger" role="alert">
+                {message}
+              </div>
+            </div>
+          )}
+        </Form>
+      </div>
+    </div>
+  );
 }

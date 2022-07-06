@@ -169,7 +169,7 @@ export default function Dashboard() {
       "https://backend-incomum.herokuapp.com/trabalhadores/delete/" + idtrabalhador;
     // network
     axios
-      .delete(baseUrl)
+      .delete(baseUrl, { headers: authHeader() })
       .then((response) => {
         console.log(idtrabalhador);
         if (response.data.success) {
