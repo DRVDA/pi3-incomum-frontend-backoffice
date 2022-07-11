@@ -23,7 +23,7 @@ import PacksEdit from './view/packsEdit';
 import Form from './view/form';
 import List from './view/list';
 import Edit from './view/edit';
-import TesteGrafico from './testeGrafico/Chart';
+import TesteGrafico from './testes/Chart';
 import Search from './testes/search';
 
 function App() {
