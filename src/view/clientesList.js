@@ -12,6 +12,7 @@ import Navbar from "../component/Navbar";
 
 export default function clientesList() {
   const [clienteList, setdataCliente] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
     const url = "https://backend-incomum.herokuapp.com/cliente/list";
@@ -44,8 +45,8 @@ export default function clientesList() {
               <h5 className="underline-light-pink">
                 Lista de clientes
               </h5>
-            <form class="form-inline">
-              <input class="form-control" type="search" placeholder="Search" aria-label="Search"/>
+            <form className="form-inline">
+              <input className="form-control" type="search" placeholder="Search" aria-label="Search" onChange={event => {setSearchTerm(event.target.value)}}/>
             </form>
             <Link to="/clientesForm">
               <button className="   btn btn-primary">Adicionar</button>
@@ -105,8 +106,30 @@ export default function clientesList() {
     </div>
   );
 
+  {JSONDATA.filter((val) => {
+    if(searchTerm ==""){
+        return val
+    } else if (val.nome.toLocaleLowerCase().includes(searchTerm.toLowerCase())){
+        return val
+    }
+}).map((val, key) => {
+    return(
+        <div key={key}>
+            <p>{val.nome}</p>
+        </div>
+    )
+})}
+
   function LoadFillData() {
-    return clienteList.map((data, index) => {
+    return clienteList
+    .filter((val) => {
+      if(searchTerm ==""){
+          return val
+      } else if (val.nome.toLocaleLowerCase().includes(searchTerm.toLowerCase())){
+          return val
+      }
+  })
+    .map((data, index) => {
       return (
         <tr key={index}>
           <th>{data.idcliente}</th>

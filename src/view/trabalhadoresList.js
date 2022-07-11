@@ -14,6 +14,7 @@ import Navbar from "../component/Navbar";
 
 export default function Dashboard() {
   const [trabalhadoresList, setdataTrabalhadores] = useState([]);
+  const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
     const url = "https://backend-incomum.herokuapp.com/trabalhadores/list";
@@ -45,12 +46,18 @@ export default function Dashboard() {
         
         <div className="col-10">
         {/*Grids*/}
-        <div className="d-flex  mt-5">
-          <div className="me-auto bd-highlight">
-            <h5 className="ms-auto underline-light-pink">Lista de trabalhadores</h5>
-          </div>
-          <Link to="/trabalhadoresForm"><button className=" float-right btn-primary">Adicionar</button></Link>
+        <div className="d-flex justify-content-between mt-5">
+              <h5 className="underline-light-pink">
+              Lista de trabalhadores
+              </h5>
+            <form className="form-inline">
+              <input className="form-control" type="search" placeholder="Search" aria-label="Search" onChange={event => {setSearchTerm(event.target.value)}}/>
+            </form>
+            <Link to="/trabalhadoresForm">
+              <button className="   btn btn-primary">Adicionar</button>
+            </Link>
         </div>
+
         <div className="row col-12">
           <table className="table table-striped">
             <thead>
@@ -113,7 +120,15 @@ export default function Dashboard() {
   );
 
   function LoadFillData() {
-    return trabalhadoresList.map((data, index) => {
+    return trabalhadoresList
+    .filter((val) => {
+      if(searchTerm ==""){
+          return val
+      } else if (val.nome.toLocaleLowerCase().includes(searchTerm.toLowerCase())){
+          return val
+      }
+  })
+    .map((data, index) => {
       return (
         <tr key={index}>
           <th>{data.idtrabalhador}</th>
