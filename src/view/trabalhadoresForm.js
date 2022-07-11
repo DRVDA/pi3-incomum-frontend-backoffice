@@ -23,102 +23,102 @@ export default function trabalhadoresForm() {
       <br />
       <br />
 
-      <p class="FuncTitulos">Novo trabalhador</p>
-      <form class="NovoMembroForm container ">
+      <p className="FuncTitulos">Novo trabalhador</p>
+      <form className="NovoMembroForm container ">
 
-      <div class="mb-3 row col-12">
-          <label  class="col-3 form-label ">
+      <div className="mb-3 row col-12">
+          <label  className="col-3 form-label ">
             TipoTrabalhadorId
           </label>
           <input
             type="text"
-            class="col form-control"
+            className="col form-control"
             id="MembroNome"
             value={campIdTipoTrabalhador}
             onChange={(value) => setcampIdTipoTrabalhador(value.target.value)}
           />
         </div>
-        <div class="mb-3 row col-12">
-          <label  class="col-3 form-label ">
+        <div className="mb-3 row col-12">
+          <label  className="col-3 form-label ">
             Nome
           </label>
           <input
             type="text"
-            class="col form-control"
+            className="col form-control"
             id="MembroNome"
             value={campNome}
             onChange={(value) => setcampNome(value.target.value)}
           />
         </div>
-        <div class="mb-3 row col-12">
-          <label  class="col-3 form-label">
+        <div className="mb-3 row col-12">
+          <label  className="col-3 form-label">
             Email address
           </label>
           <input
             type="email"
-            class="col form-control"
+            className="col form-control"
             value={campEmail}
             onChange={(value) => setcampEmail(value.target.value)}
           />
         </div>
-        <div class="mb-3 row col-12">
-          <label  class="col-3 form-label">
+        <div className="mb-3 row col-12">
+          <label  className="col-3 form-label">
             Data de nascimento
           </label>
           <input
             type="date"
-            class="col form-control"
+            className="col form-control"
             value={campDataNasc}
             onChange={(value) => setcampDataNasc(value.target.value)}
           />
         </div>
-        <div class="mb-3 row col-12">
-          <label  class="col-3 form-label">
+        <div className="mb-3 row col-12">
+          <label  className="col-3 form-label">
             Telemovel
           </label>
           <input
             type="number"
-            class="col form-control"
+            className="col form-control"
             value={campTlf}
             onChange={(value) => setcampTlf(value.target.value)}
           />
         </div>
-        <div class="mb-3 row col-12">
-          <label  class="col-3 form-label">
+        <div className="mb-3 row col-12">
+          <label  className="col-3 form-label">
             Nif
           </label>
           <input
             type="number"
-            class="col form-control"
+            className="col form-control"
             value={campNif}
             onChange={(value) => setcampNif(value.target.value)}
           />
         </div>
-        <div class="mb-3 row col-12">
-          <label  class="col-3 form-label">
+        <div className="mb-3 row col-12">
+          <label  className="col-3 form-label">
             Username
           </label>
-          <input type="password" class="col form-control"  
+          <input type="password" className="col form-control"  
           value={campUsername}
           onChange={(value) => setcampUsername(value.target.value)}/>
         </div>
-        <div class="mb-3 row col-12">
-          <label  class="col-3 form-label">
+        <div className="mb-3 row col-12">
+          <label  className="col-3 form-label">
             Password
           </label>
-          <input type="password" class="col form-control"  
+          <input type="password" className="col form-control"  
           value={campPassword}
           onChange={(value) => setcampPassword(value.target.value)}/>
         </div>
         
-        <div class="FormButtons">
-          <button type="button" class="btn btn-primary Btn_Cancelar">
+        <div className="FormButtons">
+          <button type="button" className="btn btn-primary Btn_Cancelar">
             Cancelar
           </button>
-          <button type="clear" class="btn btn-primary Btn_Limpar">
+          <button type="clear" className="btn btn-primary Btn_Limpar">
             Limpar
           </button>
-          <button type="submit" class="btn btn-primary Btn_Criar" onClick={() => SendSave()}>
+          <button type="submit" className="btn btn-primary Btn_Criar" onClick={() => SendSave()}>
             Criar
           </button>
         </div>

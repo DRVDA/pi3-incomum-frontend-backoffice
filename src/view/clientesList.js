@@ -40,14 +40,15 @@ export default function clientesList() {
 
         <div className="col-10">
           {/*Grids*/}
-          <div className="d-flex mt-5">
-            <div className="me-auto bd-highlight">
-              <h5 className="ms-auto underline-light-pink">
+          <div className="d-flex justify-content-between mt-5">
+              <h5 className="underline-light-pink">
                 Lista de clientes
               </h5>
-            </div>
+            <form class="form-inline">
+              <input class="form-control" type="search" placeholder="Search" aria-label="Search"/>
+            </form>
             <Link to="/clientesForm">
-              <button className=" float-right btn-primary">Adicionar</button>
+              <button className="   btn btn-primary">Adicionar</button>
             </Link>
           </div>
           <div className="row col-12">
@@ -122,7 +123,7 @@ export default function clientesList() {
           </td>
           <td>
             <button
-              class="btn btn-outline-danger"
+              className="btn btn-outline-danger"
               onClick={() => notificationOnDelete(data.idcliente)}
             >
               Delete

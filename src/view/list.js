@@ -58,7 +58,7 @@ export default function ListComponent() {
                         <Link className="btn btn-outline-info" to={"/edit/" + data.id} >Edit</Link>
                     </td>
                     <td>
-                        <button class="btn btn-outline-danger" onClick={() => OnDelete(data.id)}> Delete </button>
+                        <button className="btn btn-outline-danger" onClick={() => OnDelete(data.id)}> Delete </button>
                     </td>
                 </tr>
             )

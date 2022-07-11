@@ -14,10 +14,10 @@ import "../css/style.css";
 
 export default function Login() {
   return (
-      <div class="container-fluid">
+      <div className="container-fluid">
 
         {/* Parte Cima */}
-        <div class=" row border bg-light-pink p-5">
+        <div className=" row border bg-light-pink p-5">
         <img
               src="https://incommun.pt/wp-content/uploads/2022/02/logotipoincommun.png"
               alt="incommun logo"
@@ -26,16 +26,16 @@ export default function Login() {
         </div>
 
         {/* Parte Baixo */}
-        <h4 class="col-12 d-flex justify-content-center mt-5 mb-4">Login</h4>
-        <div class="col-12 d-flex justify-content-center ">
-          <input type="text" class="col-3 m-2" placeholder="Email:" />
+        <h4 className="col-12 d-flex justify-content-center mt-5 mb-4">Login</h4>
+        <div className="col-12 d-flex justify-content-center ">
+          <input type="text" className="col-3 m-2" placeholder="Email:" />
         </div>
-        <div class="col-12 d-flex justify-content-center ">
-          <input type="text" class="col-3 m-2" placeholder="Passe:" />
+        <div className="col-12 d-flex justify-content-center ">
+          <input type="text" className="col-3 m-2" placeholder="Passe:" />
         </div>
 
-        <div class="col-12 d-flex justify-content-center mt-4">
-          <button type="button" class="button-caseiro bg-dark-pink text-light">
+        <div className="col-12 d-flex justify-content-center mt-4">
+          <button type="button" className="button-caseiro bg-dark-pink text-light">
             <b>Entrar</b>
           </button>
         </div>

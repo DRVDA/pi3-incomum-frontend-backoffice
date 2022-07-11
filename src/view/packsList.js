@@ -118,7 +118,7 @@ export default function packList() {
           </td>
           <td>
             <button
-              class="btn btn-outline-danger"
+              className="btn btn-outline-danger"
               onClick={() => notificationOnDelete(data.idpack)}
             >
               {" "}

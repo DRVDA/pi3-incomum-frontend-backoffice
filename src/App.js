@@ -23,6 +23,8 @@ import PacksEdit from './view/packsEdit';
 import Form from './view/form';
 import List from './view/list';
 import Edit from './view/edit';
+import TesteGrafico from './testeGrafico/Chart';
+import Search from './testes/search';
 
 function App() {
   return (
@@ -48,7 +50,11 @@ function App() {
               <Route path="/packsEdit/:idPack" element={<PacksEdit />} />
 
               <Route path="/form" element={<Form />} />
+              <Route path="/list" element={<List />} />
               <Route path="/edit/:filmeid" element={<Edit />} />
+
+              <Route path="/teste" element={<Search />} />
+
             </Routes>
           </div>
       </div>

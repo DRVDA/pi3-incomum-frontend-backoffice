@@ -135,7 +135,7 @@ export default function Dashboard() {
           </td>
           <td>
             <button
-              class="btn btn-outline-danger"
+              className="btn btn-outline-danger"
               onClick={() => notificationOnDelete(data.idtrabalhador)}
             >
               Delete
