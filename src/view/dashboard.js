@@ -1,6 +1,8 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import authHeader from "./auth-header";
+import { useNavigate } from "react-router-dom";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
@@ -15,6 +17,11 @@ export default function Dashboard() {
   const [totalContadores, setTotalContadores] = useState(0);
   const [totalGraficoTrabalhadores, setTotalGraficoTrabalhadores] = useState(0);
   const [totalGraficoComprasFormularios, setTotalGraficoComprasFormularios] = useState(0);
+  const navigate = useNavigate();
+
+  if(!localStorage.getItem("trabalhadores")){
+    navigate("/");
+  }
 
   useEffect(() => {
     loadContadores();
@@ -25,7 +32,7 @@ export default function Dashboard() {
 
     const url = "https://backend-incomum.herokuapp.com/compra/list";
     axios
-      .get(url)
+      .get(url,  {headers: authHeader( localStorage.getItem("trabalhadores"))})
       .then((res) => {
         if (res.data.success) {
           const data = res.data.data;
@@ -331,7 +338,7 @@ export default function Dashboard() {
       "https://backend-incomum.herokuapp.com/compra/delete/" + idcompra;
     // network
     axios
-      .delete(baseUrl)
+      .delete(baseUrl,  {headers: authHeader( localStorage.getItem("trabalhadores"))})
       .then((response) => {
         console.log(idcompra);
         if (response.data.success) {
@@ -351,7 +358,7 @@ export default function Dashboard() {
   function LoadCompra() {
     const url = "https://backend-incomum.herokuapp.com/compra/list";
     axios
-      .get(url)
+      .get(url,  {headers: authHeader( localStorage.getItem("trabalhadores"))})
       .then((res) => {
         if (res.data.success) {
           const data = res.data.data;
@@ -369,7 +376,7 @@ export default function Dashboard() {
     const url =
       "https://backend-incomum.herokuapp.com/dashboard/contartrabalhadores";
     await axios
-      .get(url)
+      .get(url,  {headers: authHeader( localStorage.getItem("trabalhadores"))})
       .then((res) => {
         if (res.data.success) {
           const data = res.data.data;
@@ -386,7 +393,7 @@ export default function Dashboard() {
   async function loadContadores() {
     const url = "https://backend-incomum.herokuapp.com/dashboard/contadores";
     await axios
-      .get(url)
+      .get(url,  {headers: authHeader( localStorage.getItem("trabalhadores"))})
       .then((res) => {
         if (res.data.success) {
           const data = res.data.data;
@@ -404,7 +411,7 @@ export default function Dashboard() {
     const url =
       "https://backend-incomum.herokuapp.com/dashboard/graficoTrabalhadores";
     await axios
-      .get(url)
+      .get(url,  {headers: authHeader( localStorage.getItem("trabalhadores"))})
       .then((res) => {
         if (res.data.success) {
           const data = res.data.data;
@@ -423,7 +430,7 @@ export default function Dashboard() {
     const url =
       "https://backend-incomum.herokuapp.com/dashboard/graficoComprasFormularios";
     await axios
-      .get(url)
+      .get(url,  {headers: authHeader( localStorage.getItem("trabalhadores"))})
       .then((res) => {
         if (res.data.success) {
           const data = res.data.data;

@@ -3,6 +3,8 @@ import "bootstrap/dist/js/bootstrap.bundle.min";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import authHeader from "./auth-header";
+import { useNavigate } from "react-router-dom";
 
 const baseUrl = "https://backend-incomum.herokuapp.com";
 
@@ -14,12 +16,17 @@ export default function packsEdit() {
   const [isLoading, setIsLoading] = useState(false);
 
   const { idPack } = useParams();
+  const navigate = useNavigate();
 
+  if(!localStorage.getItem("trabalhadores")){
+    navigate("/");
+  }
+  
   useEffect(() => {
     const url = baseUrl + "/packs/get/" + idPack;
     setIsLoading(true);
     axios
-      .get(url)
+      .get(url,  {headers: authHeader( localStorage.getItem("trabalhadores"))})
       .then((res) => {
         if (res.data.success) {
           const data = res.data.data;
@@ -100,7 +107,7 @@ export default function packsEdit() {
     console.log(datapost);
 
     axios
-      .put(url, datapost)
+      .put(url, datapost,  {headers: authHeader( localStorage.getItem("trabalhadores"))})
       .then((response) => {
         console.log(response);
 

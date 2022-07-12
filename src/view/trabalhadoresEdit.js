@@ -3,6 +3,8 @@ import "bootstrap/dist/js/bootstrap.bundle.min";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import authHeader from "./auth-header";
+import { useNavigate } from "react-router-dom";
 
 const baseUrl = "https://backend-incomum.herokuapp.com";
 
@@ -22,13 +24,18 @@ export default function trabalhadoresEdit() {
   const [isLoading, setIsLoading] = useState(false);
 
   const { idTrabalhador } = useParams();
+  const navigate = useNavigate();
 
+  if(!localStorage.getItem("trabalhadores")){
+    navigate("/");
+  }
+  
   useEffect(() => {
     const url = baseUrl + "/trabalhadores/get/" + idTrabalhador;
     setIsLoading(true);
     axios
-      .get(url)
-      .then((res) => {
+    .get(url,  {headers: authHeader( localStorage.getItem("trabalhadores"))})
+    .then((res) => {
         if (res.data.success) {
           const data = res.data.data;
           setcampIdTipoTrabalhador(data.campIdTipoTrabalhador);
@@ -184,7 +191,7 @@ export default function trabalhadoresEdit() {
     console.log(datapost);
 
     axios
-      .put(url, datapost)
+      .put(url, datapost,  {headers: authHeader( localStorage.getItem("trabalhadores"))})
       .then((response) => {
         console.log(response);
 

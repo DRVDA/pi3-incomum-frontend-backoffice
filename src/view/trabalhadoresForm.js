@@ -1,8 +1,12 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
+import authHeader from "./auth-header";
+import { useNavigate } from "react-router-dom";
 
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+
+import "../css/style.css";
 
 import Navbar from "../component/Navbar";
 
@@ -15,6 +19,32 @@ export default function trabalhadoresForm() {
   const [campNif, setcampNif] = useState("");
   const [campUsername, setcampUsername] = useState("");
   const [campPassword, setcampPassword] = useState("");
+  
+  const navigate = useNavigate();
+
+  {/* Dropdown */}
+  const [isActive, setIsActive] = useState(false);
+  useState(false);
+  const [selected, setSelected] = useState("Selecione o cargo desejado:");
+  const options = ["Administrador", "Editor", "Funcionário"];
+  let varIdTipoTrabalhador = 0;
+
+  if(selected =="Administrador"){
+    varIdTipoTrabalhador= 1;
+  } else if( selected =="Editor"){
+    varIdTipoTrabalhador= 2;
+  } else if( selected =="Funcionário"){
+    varIdTipoTrabalhador= 3;
+  }
+  
+
+  {/* Fim Dropdown */}
+
+
+  if(!localStorage.getItem("trabalhadores")){
+    navigate("/");
+  }
+  
   return (
     <div>
       <Navbar />
@@ -33,10 +63,31 @@ export default function trabalhadoresForm() {
           <input
             type="text"
             className="col form-control"
-            id="MembroNome"
+            id="inputIdTipoTrabalhador"
             value={campIdTipoTrabalhador}
             onChange={(value) => setcampIdTipoTrabalhador(value.target.value)}
           />
+
+        {/*Dropdown */}
+        <div className="dropdown col-2">
+            <div className="dropdown-btn bg-dark-pink text-white p-2 border rounded" onClick={(e) => setIsActive(!isActive)}>
+              {selected}
+              <span className="fas fa-caret-down"></span>
+            </div>
+            {isActive && (
+              <div className="dropdown-content ">
+              {options.map ((option) => (
+                <div className="bg-light-pink text-white p-2" onClick={(e) =>{ setSelected(option)
+                  setIsActive(false)}}
+                  value={campIdTipoTrabalhador}
+                  onChange={(value) => setcampIdTipoTrabalhador(value.target.value)}
+                >{option}</div>
+              ))}
+            </div>
+          )}
+      </div>
+        {/* Fim Dropdown */}
+
         </div>
         <div className="mb-3 row col-12">
           <label  className="col-3 form-label ">
@@ -140,10 +191,6 @@ export default function trabalhadoresForm() {
       alert("Insira Telemovel!");
     } else if (campNif === "") {
       alert("Insira Nif!");
-    } else if (campUsername === "") {
-      alert("Insira Username!");
-    } else if (campPassword === "") {
-      alert("Insira Password!");
     } else {
       const baseUrl = "https://backend-incomum.herokuapp.com/trabalhadores/register";
       const datapost = {
@@ -158,7 +205,7 @@ export default function trabalhadoresForm() {
       };
       
         axios
-        .post(baseUrl, datapost)
+        .post(baseUrl, datapost,  {headers: authHeader( localStorage.getItem("trabalhadores"))})
         .then((response) => {
           if (response.data.success === true) {
             alert(response.data.message);

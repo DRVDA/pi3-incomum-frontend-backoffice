@@ -2,6 +2,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import authHeader from "./auth-header";
+import { useNavigate } from "react-router-dom";
 
 //sweetalert2 - importação
 import Swal from "sweetalert2/dist/sweetalert2.js";
@@ -15,11 +16,16 @@ import Navbar from "../component/Navbar";
 export default function Dashboard() {
   const [trabalhadoresList, setdataTrabalhadores] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
+  const navigate = useNavigate();
 
+  if(!localStorage.getItem("trabalhadores")){
+    navigate("/");
+  }
+  
   useEffect(() => {
     const url = "https://backend-incomum.herokuapp.com/trabalhadores/list";
     axios
-      .get(url,  {headers: authHeader()})
+      .get(url,  {headers: authHeader( localStorage.getItem("trabalhadores"))})
       .then((res) => {
         if (res.data.success) {
           const data = res.data.data;
@@ -184,7 +190,7 @@ export default function Dashboard() {
       "https://backend-incomum.herokuapp.com/trabalhadores/delete/" + idtrabalhador;
     // network
     axios
-      .delete(baseUrl, { headers: authHeader() })
+      .delete(baseUrl,  {headers: authHeader( localStorage.getItem("trabalhadores"))})
       .then((response) => {
         console.log(idtrabalhador);
         if (response.data.success) {
@@ -204,7 +210,7 @@ export default function Dashboard() {
   function LoadTrabalhadores() {
     const url = "https://backend-incomum.herokuapp.com/trabalhadores/list";
     axios
-      .get(url)
+    .get(url,  {headers: authHeader( localStorage.getItem("trabalhadores"))})
       .then((res) => {
         if (res.data.success) {
           const data = res.data.data;

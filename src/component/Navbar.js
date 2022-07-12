@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import AuthService from "../view/auth.service";
 
 
 {/* MDB */}
@@ -113,12 +114,12 @@ function Navbar() {
                 aria-labelledby="navbarDropdownMenuLink"
               >
                 <li>
-                  <Link to="" className="dropdown-item list-group-item">
+                  <Link to="/perfil" className="dropdown-item list-group-item">
                     Perfil
                   </Link>
                 </li>
                 <li>
-                  <Link to="/" className="dropdown-item list-group-item" href="#">
+                  <Link to="/" className="dropdown-item list-group-item" /*onClick={AuthService.logout()}*/>
                     Sair
                   </Link>
                 </li>

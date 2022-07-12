@@ -1,6 +1,9 @@
 import axios from 'axios';
 import { Link } from "react-router-dom";
 import React, { useEffect, useState } from "react";
+import authHeader from "./auth-header";
+import { useNavigate } from "react-router-dom";
+
 //sweetalert2 - importação
 import Swal from 'sweetalert2/dist/sweetalert2.js'
 import 'sweetalert2/src/sweetalert2.scss'
@@ -13,11 +16,16 @@ import Navbar from "../component/Navbar";
 export default function packList() {
   const [packList, setdataPack] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
+  const navigate = useNavigate();
 
+  if(!localStorage.getItem("trabalhadores")){
+    navigate("/");
+  }
+  
   useEffect(() => {
     const url = "https://backend-incomum.herokuapp.com/packs/list/";
     axios
-      .get(url)
+      .get(url,  {headers: authHeader( localStorage.getItem("trabalhadores"))})
       .then((res) => {
         if (res.data.success) {
           const data = res.data.data;
@@ -169,7 +177,7 @@ export default function packList() {
     const baseUrl = "https://backend-incomum.herokuapp.com/packs/delete/" + idpack;
     // network
     axios
-      .delete(baseUrl)
+      .delete(baseUrl,  {headers: authHeader( localStorage.getItem("trabalhadores"))})
       .then((response) => {
         console.log(response.status);
 
@@ -190,7 +198,7 @@ export default function packList() {
   function LoadPack() {
     const url = "https://backend-incomum.herokuapp.com/packs/list";
     axios
-      .get(url)
+      .get(url,  {headers: authHeader( localStorage.getItem("trabalhadores"))})
       .then((res) => {
         if (res.data.success) {
           const data = res.data.data;

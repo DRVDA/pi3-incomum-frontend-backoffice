@@ -1,6 +1,9 @@
 import axios from 'axios';
 import { Link } from "react-router-dom";
 import React, { useEffect, useState } from "react";
+import authHeader from "./auth-header";
+import { useNavigate } from "react-router-dom";
+
 //sweetalert2 - importação
 import Swal from 'sweetalert2/dist/sweetalert2.js'
 import 'sweetalert2/src/sweetalert2.scss'
@@ -13,7 +16,11 @@ import Navbar from "../component/Navbar";
 export default function packsForm() {
   const [campNome, setcampNome] = useState("");
   const [campPreco, setcampPreco] = useState("");
+  const navigate = useNavigate();
 
+  if(!localStorage.getItem("trabalhadores")){
+    navigate("/");
+  }
 
   return (
     <div>
@@ -65,7 +72,7 @@ export default function packsForm() {
       };
 
        axios
-        .post(baseUrl, datapost)
+        .post(baseUrl, datapost,  {headers: authHeader( localStorage.getItem("trabalhadores"))})
         .then((response) => {
           if (response.data.success === true) {
             alert(response.data.message);

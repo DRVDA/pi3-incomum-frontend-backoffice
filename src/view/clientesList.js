@@ -1,6 +1,9 @@
 import axios from "axios";
 import { Link } from "react-router-dom";
 import React, { useEffect, useState } from "react";
+import authHeader from "./auth-header";
+import { useNavigate } from "react-router-dom";
+
 //sweetalert2 - importação
 import Swal from "sweetalert2/dist/sweetalert2.js";
 import "sweetalert2/src/sweetalert2.scss";
@@ -13,11 +16,16 @@ import Navbar from "../component/Navbar";
 export default function clientesList() {
   const [clienteList, setdataCliente] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
+  const navigate = useNavigate();
 
+  if(!localStorage.getItem("trabalhadores")){
+    navigate("/");
+  }
+  
   useEffect(() => {
     const url = "https://backend-incomum.herokuapp.com/cliente/list";
     axios
-      .get(url)
+      .get(url,  {headers: authHeader( localStorage.getItem("trabalhadores"))})
       .then((res) => {
         if (res.data.success) {
           const data = res.data.data;
@@ -180,7 +188,7 @@ export default function clientesList() {
       "https://backend-incomum.herokuapp.com/cliente/delete/" + idcliente;
     // network
     axios
-      .delete(baseUrl)
+      .delete(baseUrl,  {headers: authHeader( localStorage.getItem("trabalhadores"))})
       .then((response) => {
         console.log(idcliente);
         if (response.data.success) {
@@ -200,7 +208,7 @@ export default function clientesList() {
   function LoadCliente() {
     const url = "https://backend-incomum.herokuapp.com/cliente/list";
     axios
-      .get(url)
+      .get(url,  {headers: authHeader( localStorage.getItem("trabalhadores"))})
       .then((res) => {
         if (res.data.success) {
           const data = res.data.data;

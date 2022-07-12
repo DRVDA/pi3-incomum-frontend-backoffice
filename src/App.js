@@ -4,8 +4,9 @@ import 'bootstrap/dist/js/bootstrap.bundle.min';
 import { BrowserRouter as Router, Route, Link, Routes } from "react-router-dom";
 import AuthService from "./view/auth.service";
 
-import Login from "./view/login";
 import Index from './view/index';
+import Perfil from "./view/perfilUtilizador";
+
 import Dashboard from './view/dashboard';
 
 import ClientesList from './view/clientesList';
@@ -20,11 +21,14 @@ import PacksList from './view/packsList';
 import PacksForm from './view/packsForm';
 import PacksEdit from './view/packsEdit';
 
-import Form from './view/form';
-import List from './view/list';
-import Edit from './view/edit';
+import Form from './testes/form';
+import List from './testes/list';
+import Edit from './testes/edit';
+
 import TesteGrafico from './testes/Chart';
 import Search from './testes/search';
+import Dropdown from './testes/Dropdown';
+import Login from "./testes/login";
 
 function App() {
   return (
@@ -34,6 +38,8 @@ function App() {
           <div className="row">
             <Routes>
               <Route path="/" element={<Index />} />
+              <Route path="/perfil" element={<Perfil />} />
+
               <Route path="/dashboard" element={<Dashboard />} />
 
               <Route path="/clientesList" element={<ClientesList />} />
@@ -49,12 +55,7 @@ function App() {
               <Route path="/packsForm" element={<PacksForm />} />
               <Route path="/packsEdit/:idPack" element={<PacksEdit />} />
 
-              <Route path="/form" element={<Form />} />
-              <Route path="/list" element={<List />} />
-              <Route path="/edit/:filmeid" element={<Edit />} />
-
-              <Route path="/teste" element={<Search />} />
-              <Route path="/login" element={<Login />} />
+              <Route path="/teste" element={<Dropdown />} />
 
             </Routes>
           </div>
