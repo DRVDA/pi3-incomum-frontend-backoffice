@@ -19,10 +19,7 @@ export default function Dashboard() {
   useEffect(() => {
     loadContadores();
     loadGraficoTrabalhadores();
-    console.log(
-      totalGraficoTrabalhadores.admin,
-      loadGraficoTrabalhadores.admin
-    );
+
 
 
 
@@ -47,7 +44,7 @@ export default function Dashboard() {
     datasets: [
       {
         label: "Users Gained",
-        data: [10, 20, 30],
+        data: [1 , 5 , 10],
         backgroundColor: ["#ecf0f1", "#FFCC00", "#A46DAE"],
         borderColor: "black",
         borderWidth: 2,

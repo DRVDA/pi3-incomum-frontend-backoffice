@@ -28,7 +28,7 @@ export default function Login() {
         {/* Parte Baixo */}
         <h4 className="col-12 d-flex justify-content-center mt-5 mb-4">Login</h4>
         <div className="col-12 d-flex justify-content-center ">
-          <input type="text" className="col-3 m-2" placeholder="Email:" />
+          <input type="text" className="col-3 m-2" placeholder="Username:" />
         </div>
         <div className="col-12 d-flex justify-content-center ">
           <input type="text" className="col-3 m-2" placeholder="Passe:" />

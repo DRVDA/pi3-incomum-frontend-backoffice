@@ -1,8 +1,8 @@
 import axios from "axios";
 class AuthService {
-  login(email, password) {
+  login(username, password) {
     return axios
-      .post("https://backend-incomum.herokuapp.com/trabalhadores/login", { email, password })
+      .post("https://backend-incomum.herokuapp.com/trabalhadores/login", { username, password })
       .then(
         (res) => {
           if (res.data.token) {

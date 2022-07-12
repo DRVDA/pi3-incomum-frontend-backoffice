@@ -4,6 +4,8 @@ import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
 import AuthService from "../view/auth.service";
 import { useNavigate } from "react-router-dom";
+
+
 const required = (value) => {
   if (!value) {
     return (
@@ -13,12 +15,14 @@ const required = (value) => {
     );
   }
 };
+
 export default function LoginComponent() {
   const [username, setusername] = useState("");
   const [password, setpassword] = useState("");
   const [loading, setloading] = useState(false);
   const [message, setmessage] = useState("");
   const navigate = useNavigate();
+  
   async function HandleLogin(event) {
     event.preventDefault();
     setmessage("");
@@ -37,6 +41,7 @@ export default function LoginComponent() {
         setloading(false);
       });
   }
+  
   return (
     <div className="col-md-4">
       <div className="card card-container">
@@ -45,10 +50,10 @@ export default function LoginComponent() {
           alt="profile-img"
           className="profile-img-card"
         />
-        <Form onSubmit={HandleLogin}>
+        <form onSubmit={HandleLogin}>
           <div className="form-group">
             <label htmlFor="username">Username</label>
-            <Input
+            <input
               type="text"
               className="form-control"
               name="username"
@@ -58,7 +63,7 @@ export default function LoginComponent() {
           </div>
           <div className="form-group">
             <label htmlFor="password">Password</label>
-            <Input
+            <input
               type="password"
               className="form-control"
               name="password"
@@ -78,7 +83,7 @@ export default function LoginComponent() {
               </div>
             </div>
           )}
-        </Form>
+        </form>
       </div>
     </div>
   );

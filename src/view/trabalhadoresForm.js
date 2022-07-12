@@ -145,7 +145,7 @@ export default function trabalhadoresForm() {
     } else if (campPassword === "") {
       alert("Insira Password!");
     } else {
-      const baseUrl = "https://backend-incomum.herokuapp.com/trabalhadores/create";
+      const baseUrl = "https://backend-incomum.herokuapp.com/trabalhadores/register";
       const datapost = {
         idtipotrabalhador: campIdTipoTrabalhador,
         nome: campNome,

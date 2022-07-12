@@ -54,6 +54,7 @@ function App() {
               <Route path="/edit/:filmeid" element={<Edit />} />
 
               <Route path="/teste" element={<Search />} />
+              <Route path="/login" element={<Login />} />
 
             </Routes>
           </div>
