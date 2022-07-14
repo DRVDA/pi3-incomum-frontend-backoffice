@@ -77,7 +77,7 @@ export default function Dashboard() {
               <img src={require("../img/ProfileDefault.png")} className="img-fluid" />
             </div>
             <h4 className="text-center mt-3">{Trabalhador.nome}</h4>
-            <h6 className="text-center mt-3">{tipoTrabalhador}</h6>
+            <h6 className="text-center mt-3">{"{"+tipoTrabalhador+"}"}</h6>
 
             <br/>
             <div className="text-center mb-3  col-12"><b>Email:</b> <br/>  {Trabalhador.email}</div>
