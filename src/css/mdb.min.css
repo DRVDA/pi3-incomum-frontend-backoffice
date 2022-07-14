@@ -87,3 +87,10 @@ padding-left: 240px;
   color: white;
   padding-right: 5px;
 }
+
+.link {
+  color: #FFF;
+}
+.link:hover {
+   color: #00F
+}
