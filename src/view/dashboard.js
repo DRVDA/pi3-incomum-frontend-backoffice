@@ -134,6 +134,7 @@ export default function Dashboard() {
               </div>
             </div>
           </div>
+<br/><br/>
 
           {/*Graphics*/}
           <div className="row">
@@ -142,7 +143,7 @@ export default function Dashboard() {
                 Trabalhadores
               </h5>
               <div className="d-flex justify-content-center">
-                <div className="col-6">
+                <div className="col-7">
                   <DoughnutChart chartData={trabalhadoresData} />
                 </div>
               </div>
@@ -159,128 +160,7 @@ export default function Dashboard() {
             </div>
           </div>
 
-          {/*Grids*/}
-          <div className="row">
-            <div className="col-6">
-              <h5 className="text-center underline-light-pink">
-                Gráfico clientes
-              </h5>
-              <table className="table table-striped">
-                <thead>
-                  <tr>
-                    <th scope="col">idcompra</th>
-                    <th scope="col">idcliente</th>
-                    <th scope="col">datacompra</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <LoadFillDataCompra />
-                </tbody>
-              </table>
-
-              {/* Numeração aba de lista */}
-              <div className="d-flex justify-content-center">
-                <button
-                  type="button"
-                  className="button-caseiro text-dark-pink border-dark-pink m-2 fs-6"
-                >
-                  <b>1</b>
-                </button>
-                <button
-                  type="button"
-                  className="button-caseiro text-dark-pink border-dark-pink m-2 fs-6"
-                >
-                  <b>2</b>
-                </button>
-                <button
-                  type="button"
-                  className="button-caseiro text-dark-pink border-dark-pink m-2 fs-6"
-                >
-                  <b>3</b>
-                </button>
-                <button
-                  type="button"
-                  className="button-caseiro text-dark-pink border-dark-pink m-2 fs-6"
-                >
-                  <b>4</b>
-                </button>
-                <button
-                  type="button"
-                  className="button-caseiro text-dark-pink border-dark-pink m-2 fs-6"
-                >
-                  <b>5</b>
-                </button>
-              </div>
-            </div>
-
-            <div className="col-6">
-              <h5 className="text-center underline-light-pink">
-                Gráfico packs
-              </h5>
-              <table className="table table-striped">
-                <thead>
-                  <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">First</th>
-                    <th scope="col">Last</th>
-                    <th scope="col">Handle</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td colSpan="2">Larry the Bird</td>
-                    <td>@twitter</td>
-                  </tr>
-                </tbody>
-              </table>
-              {/* Numeração aba de lista */}
-              <div className="d-flex justify-content-center">
-                <button
-                  type="button"
-                  className="button-caseiro text-dark-pink border-dark-pink m-2 fs-6"
-                >
-                  <b>1</b>
-                </button>
-                <button
-                  type="button"
-                  className="button-caseiro text-dark-pink border-dark-pink m-2 fs-6"
-                >
-                  <b>2</b>
-                </button>
-                <button
-                  type="button"
-                  className="button-caseiro text-dark-pink border-dark-pink m-2 fs-6"
-                >
-                  <b>3</b>
-                </button>
-                <button
-                  type="button"
-                  className="button-caseiro text-dark-pink border-dark-pink m-2 fs-6"
-                >
-                  <b>4</b>
-                </button>
-                <button
-                  type="button"
-                  className="button-caseiro text-dark-pink border-dark-pink m-2 fs-6"
-                >
-                  <b>5</b>
-                </button>
-              </div>
-            </div>
-          </div>
+          
         </div>
       </div>
     </div>
