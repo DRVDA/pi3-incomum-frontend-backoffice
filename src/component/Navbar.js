@@ -119,7 +119,7 @@ function Navbar() {
                   </Link>
                 </li>
                 <li>
-                  <Link to="/" className="dropdown-item list-group-item" /*onClick={AuthService.logout()}*/>
+                  <Link to="/" className="dropdown-item list-group-item" onClick={AuthService.logout}>
                     Sair
                   </Link>
                 </li>

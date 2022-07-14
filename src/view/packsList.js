@@ -70,8 +70,9 @@ export default function packList() {
             <thead>
               <tr>
                 <th scope="col">#</th>
-                <th scope="col">nome</th>
-                <th scope="col">preco</th>
+                <th scope="col">Categoria</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Preco</th>
               </tr>
             </thead>
             <tbody>
@@ -132,6 +133,7 @@ export default function packList() {
       return (
         <tr key={index}>
           <th>{data.idpack}</th>
+          <td>{data.idtipo}</td>
           <td>{data.nome}</td>
           <td>{data.preco}</td>
           <td>

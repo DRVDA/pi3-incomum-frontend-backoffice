@@ -13,49 +13,83 @@ import "bootstrap/dist/js/bootstrap.bundle.min";
 
 import Navbar from "../component/Navbar";
 
-
 export default function Dashboard() {
-  const [searchTerm, setSearchTerm] = useState('');
-  const navigate = useNavigate();
+  const [Trabalhador, setTrabalhador] = useState("");
 
-  if(!localStorage.getItem("trabalhadores")){
+  const [searchTerm, setSearchTerm] = useState("");
+  const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(true);
+  const [tipoTrabalhador, setTipoTrabalhador] = useState("");
+
+
+  if (!localStorage.getItem("trabalhadores")) {
     navigate("/");
   }
-  
-  
-  
-  return (
-    <div>
-    <Navbar/>
 
-<br/><br/>
+  
 
-<div className="row col-12">
+  useEffect(() => {
+    const url =
+      "https://backend-incomum.herokuapp.com/trabalhadores/getByToken";
+    setIsLoading(true);
+    axios
+      .get(url, { headers: authHeader(localStorage.getItem("trabalhadores")) })
+      .then((res) => {
+        if (res.data.success) {
+          const data = res.data.data[0];
+          console.log(data);
+          setTrabalhador(data);
 
-      <div className="col-2"></div>
+          if(Trabalhador.idtipotrabalhador == 1){
+            setTipoTrabalhador("Administrador")
+          }else if (Trabalhador.idtipotrabalhador == 2){
+            setTipoTrabalhador("Editor")}
+            else{            
+              setTipoTrabalhador("Funcionário")}
+
+          setIsLoading(false);
+        } else {
+          alert("Error web service");
+        }
+      })
+      .catch((error) => {
+        alert("Error server: " + error);
+      });
+  }, []);
+
+  if (isLoading) {
+    return(
+      <div>Is loading...</div>
+    );
+  } else {
+    return (
+      <div>
+        <Navbar />
+  
+        <br />
+        <br />
+  
+        <div className="row col-12">
+          <div className="col-2"></div>
+  
+          <div className="col-10">
+            <div className="d-flex justify-content-center mt-5">
+              <img src={require("../img/ProfileDefault.png")} className="img-fluid" />
+            </div>
+            <h4 className="text-center mt-3">{Trabalhador.nome}</h4>
+            <h6 className="text-center mt-3">{tipoTrabalhador}</h6>
+
+            <br/>
+            <div className="text-center mb-3  col-12"><b>Email:</b> <br/>  {Trabalhador.email}</div>
+            <div className="text-center mb-3  col-12"><b>Data nascimento:</b><br/>  {Trabalhador.datanasc}</div>
+            <div className="text-center mb-3  col-12"><b>Telemovel:</b><br/>  {Trabalhador.tlf}</div>
+            <div className="text-center mb-3  col-12"><b>Nif:</b><br/>  {Trabalhador.nif}</div>
+          </div>
+        </div>
         
-        
-        <div className="col-10">
-        <div className="d-flex justify-content-center mt-5">
-            <img src={require('../img/ProfileDefault.png')} class="img-fluid"/>
-        </div>
-        <h4 class="text-center mt-3">Carlos Carlotos</h4>
-        <div className="mb-3  col-12">
-            Email:
-        </div>
-        <div className="mb-3  col-12">
-            Data nascimento:
-        </div>
-        <div className="mb-3  col-12">
-            Telemovel:
-        </div>
-        <div className="mb-3  col-12">
-            Nif:
-        </div>
-
       </div>
-    </div>
-    </div>
-  );
+    );
+  }
 
+  
 }

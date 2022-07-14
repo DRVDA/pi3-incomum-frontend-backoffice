@@ -14,6 +14,7 @@ import "bootstrap/dist/js/bootstrap.bundle.min";
 import Navbar from "../component/Navbar";
 
 export default function packsForm() {
+  const [campIdTipo, setcampIdTipo] = useState("");
   const [campNome, setcampNome] = useState("");
   const [campPreco, setcampPreco] = useState("");
   const navigate = useNavigate();
@@ -32,7 +33,25 @@ export default function packsForm() {
 
       <p className="FuncTitulos">Novo pack</p>
     <form className="container ">
-        
+          <div className="mb-3 row col-12">
+            <label className="col-3 form-label ">TipoPackId</label>
+
+            <select
+              className="form-control  col"
+              onChange={(value) => {
+                setcampIdTipo(value.target.value);
+              }}
+            >
+              <option value="1">Markting Digital</option>
+              <option value="2">Design Grafico</option>
+              <option value="3">Websites E Lojas Online</option>
+              <option value="4">Comunicacao E Consultoria</option>
+
+            </select>
+
+            
+          </div>
+
           <div className="mb-3 row col-12">
             <label className="col-3 form-label ">Nome</label>
             <input type="text" className="col form-control" value={campNome}
@@ -60,17 +79,19 @@ export default function packsForm() {
 
   function SendSave() {
     event.preventDefault();
-    if (campNome === "") {
+    if (campIdTipo === ""){
+      alert("Tipo do pack!");
+    } else if(campNome === "") {
       alert("Insira Nome!");
     } else if (campPreco === "") {
       alert("Insira preco!");
     } else {
       const baseUrl = "https://backend-incomum.herokuapp.com/packs/create";
       const datapost = {
+        idtipo: campIdTipo,
         nome: campNome,
         preco: campPreco,
       };
-
        axios
         .post(baseUrl, datapost,  {headers: authHeader( localStorage.getItem("trabalhadores"))})
         .then((response) => {

@@ -19,32 +19,13 @@ export default function trabalhadoresForm() {
   const [campNif, setcampNif] = useState("");
   const [campUsername, setcampUsername] = useState("");
   const [campPassword, setcampPassword] = useState("");
-  
+
   const navigate = useNavigate();
 
-  {/* Dropdown */}
-  const [isActive, setIsActive] = useState(false);
-  useState(false);
-  const [selected, setSelected] = useState("Selecione o cargo desejado:");
-  const options = ["Administrador", "Editor", "Funcionário"];
-  let varIdTipoTrabalhador = 0;
-
-  if(selected =="Administrador"){
-    varIdTipoTrabalhador= 1;
-  } else if( selected =="Editor"){
-    varIdTipoTrabalhador= 2;
-  } else if( selected =="Funcionário"){
-    varIdTipoTrabalhador= 3;
-  }
-  
-
-  {/* Fim Dropdown */}
-
-
-  if(!localStorage.getItem("trabalhadores")){
+  if (!localStorage.getItem("trabalhadores")) {
     navigate("/");
   }
-  
+
   return (
     <div>
       <Navbar />
@@ -55,44 +36,24 @@ export default function trabalhadoresForm() {
 
       <p className="FuncTitulos">Novo trabalhador</p>
       <form className="NovoMembroForm container ">
+        <div className="mb-3 row col-12">
+          <label className="col-3 form-label ">TipoTrabalhadorId</label>
 
-      <div className="mb-3 row col-12">
-          <label  className="col-3 form-label ">
-            TipoTrabalhadorId
-          </label>
-          <input
-            type="text"
-            className="col form-control"
-            id="inputIdTipoTrabalhador"
-            value={campIdTipoTrabalhador}
-            onChange={(value) => setcampIdTipoTrabalhador(value.target.value)}
-          />
-
-        {/*Dropdown */}
-        <div className="dropdown col-2">
-            <div className="dropdown-btn bg-dark-pink text-white p-2 border rounded" onClick={(e) => setIsActive(!isActive)}>
-              {selected}
-              <span className="fas fa-caret-down"></span>
-            </div>
-            {isActive && (
-              <div className="dropdown-content ">
-              {options.map ((option) => (
-                <div className="bg-light-pink text-white p-2" onClick={(e) =>{ setSelected(option)
-                  setIsActive(false)}}
-                  value={campIdTipoTrabalhador}
-                  onChange={(value) => setcampIdTipoTrabalhador(value.target.value)}
-                >{option}</div>
-              ))}
-            </div>
-          )}
-      </div>
-        {/* Fim Dropdown */}
-
+          <div className="container-fluid col-9">
+            <select
+              className="form-control  col-6"
+              onChange={(value) => {
+                setcampIdTipoTrabalhador(value.target.value);
+              }}
+            >
+              <option value="3">Funcionário</option>
+              <option value="2">Editor</option>
+              <option value="1">Administrador</option>
+            </select>
+          </div>
         </div>
         <div className="mb-3 row col-12">
-          <label  className="col-3 form-label ">
-            Nome
-          </label>
+          <label className="col-3 form-label ">Nome</label>
           <input
             type="text"
             className="col form-control"
@@ -102,9 +63,7 @@ export default function trabalhadoresForm() {
           />
         </div>
         <div className="mb-3 row col-12">
-          <label  className="col-3 form-label">
-            Email address
-          </label>
+          <label className="col-3 form-label">Email address</label>
           <input
             type="email"
             className="col form-control"
@@ -113,9 +72,7 @@ export default function trabalhadoresForm() {
           />
         </div>
         <div className="mb-3 row col-12">
-          <label  className="col-3 form-label">
-            Data de nascimento
-          </label>
+          <label className="col-3 form-label">Data de nascimento</label>
           <input
             type="date"
             className="col form-control"
@@ -124,9 +81,7 @@ export default function trabalhadoresForm() {
           />
         </div>
         <div className="mb-3 row col-12">
-          <label  className="col-3 form-label">
-            Telemovel
-          </label>
+          <label className="col-3 form-label">Telemovel</label>
           <input
             type="number"
             className="col form-control"
@@ -135,9 +90,7 @@ export default function trabalhadoresForm() {
           />
         </div>
         <div className="mb-3 row col-12">
-          <label  className="col-3 form-label">
-            Nif
-          </label>
+          <label className="col-3 form-label">Nif</label>
           <input
             type="number"
             className="col form-control"
@@ -146,22 +99,24 @@ export default function trabalhadoresForm() {
           />
         </div>
         <div className="mb-3 row col-12">
-          <label  className="col-3 form-label">
-            Username
-          </label>
-          <input type="password" className="col form-control"  
-          value={campUsername}
-          onChange={(value) => setcampUsername(value.target.value)}/>
+          <label className="col-3 form-label">Username</label>
+          <input
+            type="password"
+            className="col form-control"
+            value={campUsername}
+            onChange={(value) => setcampUsername(value.target.value)}
+          />
         </div>
         <div className="mb-3 row col-12">
-          <label  className="col-3 form-label">
-            Password
-          </label>
-          <input type="password" className="col form-control"  
-          value={campPassword}
-          onChange={(value) => setcampPassword(value.target.value)}/>
+          <label className="col-3 form-label">Password</label>
+          <input
+            type="password"
+            className="col form-control"
+            value={campPassword}
+            onChange={(value) => setcampPassword(value.target.value)}
+          />
         </div>
-        
+
         <div className="FormButtons">
           <button type="button" className="btn btn-primary Btn_Cancelar">
             Cancelar
@@ -169,7 +124,11 @@ export default function trabalhadoresForm() {
           <button type="clear" className="btn btn-primary Btn_Limpar">
             Limpar
           </button>
-          <button type="submit" className="btn btn-primary Btn_Criar" onClick={() => SendSave()}>
+          <button
+            type="submit"
+            className="btn btn-primary Btn_Criar"
+            onClick={() => SendSave()}
+          >
             Criar
           </button>
         </div>
@@ -177,7 +136,7 @@ export default function trabalhadoresForm() {
     </div>
   );
 
-   function SendSave() {
+  function SendSave() {
     event.preventDefault();
     if (campIdTipoTrabalhador === "") {
       alert("Insira IdTipoTrabalhador!");
@@ -192,7 +151,8 @@ export default function trabalhadoresForm() {
     } else if (campNif === "") {
       alert("Insira Nif!");
     } else {
-      const baseUrl = "https://backend-incomum.herokuapp.com/trabalhadores/register";
+      const baseUrl =
+        "https://backend-incomum.herokuapp.com/trabalhadores/register";
       const datapost = {
         idtipotrabalhador: campIdTipoTrabalhador,
         nome: campNome,
@@ -201,16 +161,17 @@ export default function trabalhadoresForm() {
         tlf: campTlf,
         nif: campNif,
         username: campUsername,
-        password: campPassword
+        password: campPassword,
       };
-      
-        axios
-        .post(baseUrl, datapost,  {headers: authHeader( localStorage.getItem("trabalhadores"))})
+
+      axios
+        .post(baseUrl, datapost, {
+          headers: authHeader(localStorage.getItem("trabalhadores")),
+        })
         .then((response) => {
           if (response.data.success === true) {
             alert(response.data.message);
             window.location.reload();
-
           } else {
             alert(response.data.message);
             window.location.reload();

@@ -21,7 +21,7 @@ export default function trabalhadoresEdit() {
   const [campUsername, setcampUsername] = useState("");
   const [campPassword, setcampPassword] = useState("");
 
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   const { idTrabalhador } = useParams();
   const navigate = useNavigate();

@@ -11,6 +11,7 @@ const baseUrl = "https://backend-incomum.herokuapp.com";
 import Navbar from "../component/Navbar";
 
 export default function packsEdit() {
+  const [campIdTipoPack, setcampIdTipoPack] = useState("");
   const [campNome, setcampNome] = useState("");
   const [campPreco, setcampPreco] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -30,6 +31,7 @@ export default function packsEdit() {
       .then((res) => {
         if (res.data.success) {
           const data = res.data.data;
+          setcampIdTipoPack(data.idtipo);
           setcampNome(data.nome);
           setcampPreco(data.preco);
 
@@ -60,6 +62,16 @@ export default function packsEdit() {
             ) : (
               <>
                 <div className="form-row justify-content-center">
+                <div className="form-group col-md-6">
+                    <label htmlFor="inputIdTipoPack">Id tipo pack</label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      placeholder="IdTipoPack"
+                      value={campIdTipoPack}
+                      onChange={(value) => setcampIdTipoPack(value.target.value)}
+                    />
+                  </div>
                   <div className="form-group col-md-6">
                     <label htmlFor="inputNome">Nome</label>
                     <input
@@ -101,6 +113,7 @@ export default function packsEdit() {
     // url de backend
     const url = baseUrl + "/packs/update/" + idPack;
     const datapost = {
+      idtipo: campIdTipoPack,
       nome: campNome,
       preco: campPreco,
     };
