@@ -17,8 +17,32 @@ export default function packsForm() {
   const [campIdTipo, setcampIdTipo] = useState("");
   const [campNome, setcampNome] = useState("");
   const [campPreco, setcampPreco] = useState("");
+
+  const [servicosList, setdataServicos] = useState([]);
+
+  const [searchTerm, setSearchTerm] = useState('');
+
   const navigate = useNavigate();
 
+  useEffect(() => {
+
+  const url = "https://backend-incomum.herokuapp.com/servicos/list/";
+  axios
+    .get(url,  {headers: authHeader( localStorage.getItem("trabalhadores"))})
+    .then((res) => {
+      if (res.data.success) {
+        const data = res.data.data;
+        setdataServicos(data);
+      } else {
+        alert("Error Web Service!");
+      }
+    })
+    .catch((error) => {
+      alert(error);
+    });
+  }, []);
+
+  
   if(!localStorage.getItem("trabalhadores")){
     navigate("/");
   }
@@ -62,6 +86,15 @@ export default function packsForm() {
           <input type="number" className="col form-control" value={campPreco}
             onChange={(value) => setcampPreco(value.target.value)}/>
         </div>
+        <div className="mb-3 row col-12">
+          <label className="col-3 form-label ">Servicos</label>
+            <div className=" col-9 container border">
+            <input className="form-control mt-2" type="search" placeholder="Search" aria-label="Search" onChange={event => {setSearchTerm(event.target.value)}}/>
+            <hr/>
+                        <LoadFillDataServices/>
+  </div>
+        </div>
+
           <div > 
             <button type="button" className="btn btn-primary">Cancelar</button>
             <button type="clear" className="btn btn-primary">Limpar</button>
@@ -76,6 +109,9 @@ export default function packsForm() {
       </form>
     </div>
   );
+
+  
+
 
   function SendSave() {
     event.preventDefault();
@@ -109,6 +145,48 @@ export default function packsForm() {
           alert("Error 34 " + error);
         });
     }
+  }
+
+
+  function LoadFillDataServices() {
+    return servicosList
+    .filter((val) => {
+      if(searchTerm ==""){
+          return val
+      } else if (val.descricao.toLocaleLowerCase().includes(searchTerm.toLowerCase())){
+          return val
+      }
+  })
+    .map((data, index) => {
+      return (
+        <div className="ms-3">
+          <div className="row">
+            <input className=" col-5  form-check-input" type="checkbox" />
+            <div className=" col-11 ">{data.descricao}</div>
+          </div>
+        </div>
+        /*<tr key={index}>
+          <th>{data.idpack}</th>
+          <td>{data.idtipo}</td>
+          <td>{data.nome}</td>
+          <td>{data.preco}</td>
+          <td>
+            <Link className="btn btn-outline-info" to={"/packsEdit/" + data.idpack}>
+              Edit
+            </Link>
+          </td>
+          <td>
+            <button
+              className="btn btn-outline-danger"
+              onClick={() => notificationOnDelete(data.idpack)}
+            >
+              {" "}
+              Delete{" "}
+            </button>
+          </td>
+        </tr>*/
+      );
+    });
   }
   
 }

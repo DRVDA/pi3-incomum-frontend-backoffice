@@ -21,6 +21,10 @@ import PacksList from './view/packsList';
 import PacksForm from './view/packsForm';
 import PacksEdit from './view/packsEdit';
 
+import ServicosList from './view/servicosList';
+import ServicoForm from './view/servicosForm';
+import ServicosEdit from './view/servicosEdit';
+
 import FormulariosList from './view/formulariosList.js';
 
 import Form from './testes/form';
@@ -56,6 +60,10 @@ function App() {
               <Route path="/packsList" element={<PacksList />} />
               <Route path="/packsForm" element={<PacksForm />} />
               <Route path="/packsEdit/:idPack" element={<PacksEdit />} />
+
+              <Route path="/servicosList" element={<ServicosList />} />
+              <Route path="/servicosForm" element={<ServicoForm />} />
+              <Route path="/servicosEdit/:idServicos" element={<ServicosEdit />} />
 
               <Route path="/formulariosList" element={<FormulariosList />} />
 
