@@ -18,18 +18,54 @@ export default function Dashboard() {
   const [searchTerm, setSearchTerm] = useState('');
   const navigate = useNavigate();
 
+  const [Trabalhador, setTrabalhador] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
+  const [tipoTrabalhador, setTipoTrabalhador] = useState("");
+
   if(!localStorage.getItem("trabalhadores")){
     navigate("/");
+  }else if(Trabalhador.idtipotrabalhador == 2){
+    navigate("/clientesList");
+  }else if(Trabalhador.idtipotrabalhador == 3){
+    navigate("/clientesList");
   }
   
   useEffect(() => {
-    const url = "https://backend-incomum.herokuapp.com/trabalhadores/list";
+
+    const url = "https://backend-incomum.herokuapp.com/trabalhadores/getByToken";
+  setIsLoading(true);
+  axios
+    .get(url, { headers: authHeader(localStorage.getItem("trabalhadores")) })
+    .then((res) => {
+      if (res.data.success) {
+        const data = res.data.data[0];
+        console.log(data);
+        setTrabalhador(data);
+
+        if(Trabalhador.idtipotrabalhador == 1){
+          setTipoTrabalhador("Administrador")
+        }else if (Trabalhador.idtipotrabalhador == 2){
+          setTipoTrabalhador("Editor")}
+          else{            
+            setTipoTrabalhador("Funcionário")}
+
+        setIsLoading(false);
+      } else {
+        alert("Error web service");
+      }
+    })
+    .catch((error) => {
+      alert("Error server: " + error);
+    });
+
+
+    const url1 = "https://backend-incomum.herokuapp.com/trabalhadores/list";
     axios
-      .get(url,  {headers: authHeader( localStorage.getItem("trabalhadores"))})
+      .get(url1,  {headers: authHeader( localStorage.getItem("trabalhadores"))})
       .then((res) => {
         if (res.data.success) {
-          const data = res.data.data;
-          setdataTrabalhadores(data);
+          const data1 = res.data.data;
+          setdataTrabalhadores(data1);
         } else {
           alert("Error Web Service!");
         }
@@ -213,8 +249,8 @@ export default function Dashboard() {
     .get(url,  {headers: authHeader( localStorage.getItem("trabalhadores"))})
       .then((res) => {
         if (res.data.success) {
-          const data = res.data.data;
-          setdataTrabalhadores(data);
+          const data1 = res.data.data;
+          setdataTrabalhadores(data1);
         } else {
           alert("Error Web Service!");
         }

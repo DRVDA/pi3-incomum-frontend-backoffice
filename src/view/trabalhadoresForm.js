@@ -22,9 +22,48 @@ export default function trabalhadoresForm() {
 
   const navigate = useNavigate();
 
-  if (!localStorage.getItem("trabalhadores")) {
+  const [Trabalhador, setTrabalhador] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
+  const [tipoTrabalhador, setTipoTrabalhador] = useState("");
+
+  if(!localStorage.getItem("trabalhadores")){
     navigate("/");
+  }else if(Trabalhador.idtipotrabalhador == 2){
+    navigate("/clientesList");
+  }else if(Trabalhador.idtipotrabalhador == 3){
+    navigate("/clientesList");
   }
+
+  useEffect(() => {
+
+
+    const url =
+      "https://backend-incomum.herokuapp.com/trabalhadores/getByToken";
+    setIsLoading(true);
+    axios
+      .get(url, { headers: authHeader(localStorage.getItem("trabalhadores")) })
+      .then((res) => {
+        if (res.data.success) {
+          const data = res.data.data[0];
+          console.log(data);
+          setTrabalhador(data);
+
+          if(Trabalhador.idtipotrabalhador == 1){
+            setTipoTrabalhador("Administrador")
+          }else if (Trabalhador.idtipotrabalhador == 2){
+            setTipoTrabalhador("Editor")}
+            else{            
+              setTipoTrabalhador("Funcionário")}
+
+          setIsLoading(false);
+        } else {
+          alert("Error web service");
+        }
+      })
+      .catch((error) => {
+        alert("Error server: " + error);
+      });
+  }, []);
 
   return (
     <div>

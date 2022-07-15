@@ -26,26 +26,60 @@ export default function trabalhadoresEdit() {
   const { idTrabalhador } = useParams();
   const navigate = useNavigate();
 
+  const [Trabalhador, setTrabalhador] = useState("");
+  const [tipoTrabalhador, setTipoTrabalhador] = useState("");
+
   if(!localStorage.getItem("trabalhadores")){
     navigate("/");
+  }else if(Trabalhador.idtipotrabalhador == 2){
+    navigate("/clientesList");
+  }else if(Trabalhador.idtipotrabalhador == 3){
+    navigate("/clientesList");
   }
   
   useEffect(() => {
-    const url = baseUrl + "/trabalhadores/get/" + idTrabalhador;
+    const url = "https://backend-incomum.herokuapp.com/trabalhadores/getByToken";
     setIsLoading(true);
     axios
-    .get(url,  {headers: authHeader( localStorage.getItem("trabalhadores"))})
+      .get(url, { headers: authHeader(localStorage.getItem("trabalhadores")) })
+      .then((res) => {
+        if (res.data.success) {
+          const data = res.data.data[0];
+          console.log(data);
+          setTrabalhador(data);
+  
+          if(Trabalhador.idtipotrabalhador == 1){
+            setTipoTrabalhador("Administrador")
+          }else if (Trabalhador.idtipotrabalhador == 2){
+            setTipoTrabalhador("Editor")}
+            else{            
+              setTipoTrabalhador("Funcionário")}
+  
+          setIsLoading(false);
+        } else {
+          alert("Error web service");
+        }
+      })
+      .catch((error) => {
+        alert("Error server: " + error);
+      });
+
+
+    const url1 = baseUrl + "/trabalhadores/get/" + idTrabalhador;
+    setIsLoading(true);
+    axios
+    .get(url1,  {headers: authHeader( localStorage.getItem("trabalhadores"))})
     .then((res) => {
         if (res.data.success) {
-          const data = res.data.data;
-          setcampIdTipoTrabalhador(data.campIdTipoTrabalhador);
-          setcampNome(data.nome);
-          setcampEmail(data.email);
-          setcampDataNasc(data.datanasc);
-          setcampTlf(data.tlf);
-          setcampNif(data.nif);
-          setcampUsername(data.username);
-          setcampPassword(data.password);
+          const data1 = res.data.data;
+          setcampIdTipoTrabalhador(data1.campIdTipoTrabalhador);
+          setcampNome(data1.nome);
+          setcampEmail(data1.email);
+          setcampDataNasc(data1.datanasc);
+          setcampTlf(data1.tlf);
+          setcampNif(data1.nif);
+          setcampUsername(data1.username);
+          setcampPassword(data1.password);
         } else {
           alert("Error web service");
         }

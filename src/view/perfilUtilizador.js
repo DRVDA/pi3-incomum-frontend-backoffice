@@ -29,6 +29,7 @@ export default function Dashboard() {
   
 
   useEffect(() => {
+    console.log(tipoTrabalhador+"AQUI");
     const url =
       "https://backend-incomum.herokuapp.com/trabalhadores/getByToken";
     setIsLoading(true);
@@ -40,15 +41,15 @@ export default function Dashboard() {
           console.log(data);
           setTrabalhador(data);
 
-          if(Trabalhador.idtipotrabalhador == 1){
+          if(data.idtipotrabalhador == 1){
             setTipoTrabalhador("Administrador")
-          }else if (Trabalhador.idtipotrabalhador == 2){
+          }else if (data.idtipotrabalhador == 2){
             setTipoTrabalhador("Editor")}
-            else{            
+            else if (data.idtipotrabalhador == 3){            
               setTipoTrabalhador("Funcionário")}
 
           setIsLoading(false);
-        } else {
+        } else { 
           alert("Error web service");
         }
       })

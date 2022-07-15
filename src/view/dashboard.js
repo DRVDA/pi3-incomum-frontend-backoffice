@@ -17,34 +17,54 @@ export default function Dashboard() {
   const [totalContadores, setTotalContadores] = useState(0);
   const [totalGraficoTrabalhadores, setTotalGraficoTrabalhadores] = useState(0);
   const [totalGraficoComprasFormularios, setTotalGraficoComprasFormularios] = useState(0);
+
   const navigate = useNavigate();
+
+  const [Trabalhador, setTrabalhador] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
+  const [tipoTrabalhador, setTipoTrabalhador] = useState("");
 
   if(!localStorage.getItem("trabalhadores")){
     navigate("/");
+  }else if(Trabalhador.idtipotrabalhador == 2){
+    navigate("/clientesList");
+  }else if(Trabalhador.idtipotrabalhador == 3){
+    navigate("/clientesList");
   }
 
   useEffect(() => {
     loadContadores();
     loadGraficoTrabalhadores();
 
-
-
-
-    const url = "https://backend-incomum.herokuapp.com/compra/list";
+    const url =
+      "https://backend-incomum.herokuapp.com/trabalhadores/getByToken";
+    setIsLoading(true);
     axios
-      .get(url,  {headers: authHeader( localStorage.getItem("trabalhadores"))})
+      .get(url, { headers: authHeader(localStorage.getItem("trabalhadores")) })
       .then((res) => {
         if (res.data.success) {
-          const data = res.data.data;
-          setdataCompra(data);
+          const data = res.data.data[0];
+          console.log(data);
+          setTrabalhador(data);
+
+          if(Trabalhador.idtipotrabalhador == 1){
+            setTipoTrabalhador("Administrador")
+          }else if (Trabalhador.idtipotrabalhador == 2){
+            setTipoTrabalhador("Editor")}
+            else{            
+              setTipoTrabalhador("Funcionário")}
+
+          setIsLoading(false);
         } else {
-          alert("Error Web Service!");
+          alert("Error web service");
         }
       })
       .catch((error) => {
-        alert(error);
+        alert("Error server: " + error);
       });
   }, []);
+
+
 
   const [trabalhadoresData, setTrabalhadoresData] = useState({
     labels: ["Admin", "Editores", "Funcionarios"],
@@ -166,91 +186,7 @@ export default function Dashboard() {
     </div>
   );
 
-  function LoadFillDataCompra() {
-    return compraList.map((data, index) => {
-      return (
-        <tr key={index}>
-          <th>{data.idcompra}</th>
-          <td>{data.idcliente}</td>
-          <td>{data.datacompra}</td>
-          <td>
-            <Link
-              className="btn btn-outline-info"
-              to={"/edit/" + data.idcompra}
-            >
-              Edit
-            </Link>
-          </td>
-          <td>
-            <button
-              className="btn btn-outline-danger"
-              onClick={() => OnDeleteCompra(data.idcompra)}
-            >
-              {" "}
-              Delete{" "}
-            </button>
-          </td>
-        </tr>
-      );
-    });
-  }
-
-  function OnDeleteCompra(id) {
-    Swal.fire({
-      title: "Are you sure?",
-      text: "You will not be able to recover this imaginary file!",
-      type: "warning",
-      showCancelButton: true,
-      confirmButtonText: "Yes, delete it!",
-      cancelButtonText: "No, keep it",
-    }).then((result) => {
-      if (result.value) {
-        OnDeleteCompra(id);
-      } else if (result.dismiss === Swal.DismissReason.cancel) {
-        Swal.fire("Cancelled", "Your imaginary file is safe :)", "error");
-      }
-    });
-  }
-
-  function OnDeleteCompra(idcompra) {
-    // url do backend
-    const baseUrl =
-      "https://backend-incomum.herokuapp.com/compra/delete/" + idcompra;
-    // network
-    axios
-      .delete(baseUrl,  {headers: authHeader( localStorage.getItem("trabalhadores"))})
-      .then((response) => {
-        console.log(idcompra);
-        if (response.data.success) {
-          Swal.fire("Deleted!", "Your employee has been deleted.", "success");
-          LoadCompra();
-        }
-      })
-      .catch((error) => {
-        alert("Error 325");
-      });
-
-    useEffect(() => {
-      LoadCompra();
-    }, []);
-  }
-
-  function LoadCompra() {
-    const url = "https://backend-incomum.herokuapp.com/compra/list";
-    axios
-      .get(url,  {headers: authHeader( localStorage.getItem("trabalhadores"))})
-      .then((res) => {
-        if (res.data.success) {
-          const data = res.data.data;
-          setdataCompra(data);
-        } else {
-          alert("Error Web Service!");
-        }
-      })
-      .catch((error) => {
-        alert(error);
-      });
-  }
+ 
 
   async function loadCountTrabalhadores() {
     const url =
