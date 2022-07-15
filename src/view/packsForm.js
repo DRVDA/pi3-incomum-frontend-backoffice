@@ -134,11 +134,39 @@ export default function packsForm() {
           if (response.data.success === true) {
             alert(response.data.message);
             window.location.reload();
+            
+
+
+
+            const baseUrl = "https://backend-incomum.herokuapp.com/packs/create";
+            const datapost = {
+              idtipo: campIdTipo,
+              nome: campNome,
+              preco: campPreco,
+            };
+             axios
+              .post(baseUrl, datapost,  {headers: authHeader( localStorage.getItem("trabalhadores"))})
+              .then((response) => {
+                if (response.data.success === true) {
+                  alert(response.data.message);
+                  window.location.reload();
+      
+                } else {
+                  alert(response.data.message);
+                  window.location.reload();
+      
+                }
+              })
+              .catch((error) => {
+                alert("Error 34 " + error);
+              });
+
+
+
 
           } else {
             alert(response.data.message);
             window.location.reload();
-
           }
         })
         .catch((error) => {
