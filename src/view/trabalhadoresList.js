@@ -111,8 +111,6 @@ export default function Dashboard() {
                 <th scope="col">DastaNascimento</th>
                 <th scope="col">Tlf</th>
                 <th scope="col">Nif</th>
-                <th scope="col">Username</th>
-                <th scope="col">Password</th>
 
               </tr>
             </thead>
@@ -180,8 +178,6 @@ export default function Dashboard() {
           <td>{data.datanasc}</td>
           <td>{data.tlf}</td>
           <td>{data.nif}</td>
-          <td>{data.username}</td>
-          <td>{data.password}</td>
           <td>
             <Link
               className="btn btn-outline-info"
