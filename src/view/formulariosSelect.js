@@ -846,14 +846,6 @@ export default function formularioEdit() {
                     </form>
                   </div>
                 </div>
-
-                <button
-                  type="submit"
-                  className="btn btn-primary"
-                  onClick={() => sendUpdate()}
-                >
-                  Update
-                </button>
               </>
             )}
           </div>
