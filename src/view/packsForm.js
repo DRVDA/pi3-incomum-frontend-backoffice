@@ -135,9 +135,6 @@ export default function packsForm() {
             alert(response.data.message);
             window.location.reload();
             
-
-
-
             const baseUrl = "https://backend-incomum.herokuapp.com/packs/create";
             const datapost = {
               idtipo: campIdTipo,

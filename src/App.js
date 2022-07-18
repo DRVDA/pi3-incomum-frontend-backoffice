@@ -26,6 +26,7 @@ import ServicoForm from './view/servicosForm';
 import ServicosEdit from './view/servicosEdit';
 
 import FormulariosList from './view/formulariosList.js';
+import FormularioSelect from './view/formulariosSelect';
 
 import Form from './testes/form';
 import List from './testes/list';
@@ -66,6 +67,7 @@ function App() {
               <Route path="/servicosEdit/:idServicos" element={<ServicosEdit />} />
 
               <Route path="/formulariosList" element={<FormulariosList />} />
+              <Route path="/formularioSelect/:idFormulario" element={<FormularioSelect />} />
 
               <Route path="/teste" element={<Dropdown />} />
 
